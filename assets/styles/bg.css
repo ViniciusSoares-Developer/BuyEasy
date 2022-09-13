@@ -1,0 +1,9 @@
+.bg-user-form {
+    width: 100vw;
+    height: 100vh;
+
+    background-color: var(--secondary-color);
+    background-image: url('../imgs/Frame\ 1.png');
+
+    background-size: 150px;
+}

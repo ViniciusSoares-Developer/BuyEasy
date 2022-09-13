@@ -1,0 +1,57 @@
+header {
+    background-color: var(--primary-color);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+header button {
+    padding: .5rem 1rem;
+}
+
+.shadow {
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+header .btn-login {
+    padding: .3rem;
+
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+    
+    border-width: .3rem;
+    border-radius: .5rem;
+    border-style: solid;
+
+    font-size: small;
+
+    transition: 500ms;
+}
+
+.btn-login:hover {
+    outline: .3rem solid var(--outline-color);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+header .btn-register {
+    margin-bottom: .3rem;
+    
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    
+    border-style: solid;
+    border-radius: .5rem;
+
+    font-weight: 700;
+
+    transition: 500ms;
+}
+
+.btn-register:hover {
+    outline: .3rem solid var(--outline-color);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
