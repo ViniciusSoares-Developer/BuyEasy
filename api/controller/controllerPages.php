@@ -28,10 +28,8 @@ else if ($page === 'login' && !isset($_SESSION['user'])) {
 }
 
 //user logged
-else if (isset($_SESSION['user'])) {
-    if ($page === 'user') {
-        include_once './view/userView.php';
-    }
+else if ($page === 'user' && isset($_SESSION['user'])) {
+    include_once './view/userView.php';
 }
 
 else if ($page === 'error') {

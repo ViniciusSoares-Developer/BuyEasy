@@ -20,7 +20,7 @@ header .btn-login {
     background-color: var(--primary-color);
     border-color: var(--secondary-color);
     
-    border-width: .3rem;
+    border-width: .2rem;
     border-radius: .5rem;
     border-style: solid;
 

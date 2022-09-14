@@ -1,11 +1,6 @@
-<main class="container-fluid">
-    <section class="row">
-        <form class="form-search d-flex justify-content-center" action="" method="post">
-            <input type="text" placeholder="Buscar">
-            <button class="px-3" type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </section>
+<main class="container">
 
+    <!-- banner -->
     <section class="row">
         <div id="carouselExampleIndicators" class="carousel slide border-0" data-bs-ride="true">
             <div class="carousel-indicators">
@@ -35,47 +30,49 @@
         </div>
     </section>
 
-    <section class="row mx-5 mt-5">
-        <span class="row title-add-recent ps-5">Adicionados recentementes</span>
-        <div class="row d-flex justify-content-center">
-            <a class="col-2 product-view d-flex align-items-center flex-column text-center p-4 m-4" href="?page=product">
-                <img class="product-img" src="" alt="">
-                <span class="product-name mt-2 mb-3">Title</span>
-                <span class="product-value">R$ 000,00</span>
-            </a>
-        </div>
+    <!-- search -->
+    <section class="row">
+        <form class="form-search d-flex justify-content-center" action="" method="post">
+            <input type="text" placeholder="Buscar">
+            <button class="px-3" type="submit"><i class="fa fa-search"></i></button>
+        </form>
     </section>
 
-    <section class="row mx-3 mt-5">
+    <!-- top 3 sellers -->
+    <!-- <section class="row mx-3 mt-5">
         <span class="text-center title-add-recent mb-2">Melhores vendedores</span>
 
-        <!-- cabe 8 -->
         <a class="seller-container col-1 mx-4 d-flex align-items-center flex-column" href="">
             <img src="" alt="img vendedor">
             <span>Name</span>
         </a>
+    </section> -->
+
+    <!-- hightlights -->
+    <section class="row highlight mt-5 d-flex justify-content-center">
+        <?php for ($i = 0; $i < 12; $i++) : ?>
+            <div class="col-2 d-flex align-items-center flex-column text-center p-2">
+                <a class="product-view p-4" href="?page=product">
+                    <img class="product-img" src="" alt="">
+                    <span class="product-name">Title</span><br>
+                    <span class="product-value">R$ 000,00</span>
+                </a>
+            </div>
+        <?php endfor ?>
+        <div class="row highlight-viewMore text-center"><a href="#">Ver mais</a></div>
     </section>
 
-    <section class="row mt-5 d-flex justify-content-center">
-        <a class="col-2 product-view d-flex align-items-center flex-column text-center p-4 m-4" href="?page=product">
-            <img class="product-img" src="" alt="">
-            <span class="product-name mt-2 mb-3">Title</span>
-            <span class="product-value">R$ 000,00</span>
-        </a>
-        <a class="col-2 product-view d-flex align-items-center flex-column text-center p-4 m-4" href="?page=product">
-            <img class="product-img" src="" alt="">
-            <span class="product-name mt-2 mb-3">Title</span>
-            <span class="product-value">R$ 000,00</span>
-        </a>
-        <a class="col-2 product-view d-flex align-items-center flex-column text-center p-4 m-4" href="?page=product">
-            <img class="product-img" src="" alt="">
-            <span class="product-name mt-2 mb-3">Title</span>
-            <span class="product-value">R$ 000,00</span>
-        </a>
-        <a class="col-2 product-view d-flex align-items-center flex-column text-center p-4 m-4" href="?page=product">
-            <img class="product-img" src="" alt="">
-            <span class="product-name mt-2 mb-3">Title</span>
-            <span class="product-value">R$ 000,00</span>
-        </a>
+    <section class="row comments-container">
+        <section class="col me-1">
+            <span>Comments</span>
+            <div>
+                
+            </div>
+        </section>
+        <section class="col ms-1">
+            <span>Novos parceiros</span>
+            <div>
+            </div>
+        </section>
     </section>
 </main>
