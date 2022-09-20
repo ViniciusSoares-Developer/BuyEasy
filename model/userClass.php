@@ -56,7 +56,7 @@ class User{
         }
     }
 
-    public function register(){
+    public function register_db(){
         $sql = "INSERT INTO `users`(`name`,`email`,`password`) values (:n, :e, :p)";
         $db = Database::conexao();
         $stmt = $db->prepare($sql);

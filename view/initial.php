@@ -33,8 +33,8 @@
     <!-- search -->
     <section class="row">
         <form class="form-search d-flex justify-content-center" action="" method="post">
-            <input type="text" placeholder="Buscar">
-            <button class="px-3" type="submit"><i class="fa fa-search"></i></button>
+            <input class="h-100" type="text" placeholder="Buscar">
+            <button class="h-100 pe-4" type="submit"><i class="fa fa-search"></i></button>
         </form>
     </section>
 
@@ -51,9 +51,9 @@
     <!-- hightlights -->
     <section class="row highlight mt-5 d-flex justify-content-center">
         <?php for ($i = 0; $i < 12; $i++) : ?>
-            <div class="col-2 d-flex align-items-center flex-column text-center p-2">
-                <a class="product-view p-4" href="?page=product">
-                    <img class="product-img" src="" alt="">
+            <div class="col-sm-2 product-view-container">
+                <a class="product-view p-4 d-flex align-items-center flex-column text-center" href="?page=product">
+                    <img src="" alt="">
                     <span class="product-name">Title</span><br>
                     <span class="product-value">R$ 000,00</span>
                 </a>
