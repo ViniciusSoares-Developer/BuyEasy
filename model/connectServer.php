@@ -24,7 +24,7 @@ class Database
     {
         # Informações sobre o banco de dados:
         $db_host = "localhost";
-        $db_nome = "valhalla_db";
+        $db_nome = "buyeasy_db";
         $db_usuario = "root";
         $db_senha = "";
         $db_driver = "mysql";
@@ -52,7 +52,7 @@ class Database
     }
 
     # Método estático - acessível sem instanciação.
-    public static function conexao()
+    public static function connection()
     {
         # Garante uma única instância. Se não existe uma conexão, criamos uma nova.
         if (!self::$db)
