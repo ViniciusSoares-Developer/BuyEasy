@@ -3,12 +3,17 @@ session_start();
 
 define("URL", "http://localhost/projects/backPHP");
 
+if ($_COOKIE) {
+    if (isset($_COOKIE['buyeasy_user_name'])) {
+        $_COOKIE['buyeasy_user_name'];
+    }
+}
+// var_dump($_SESSION['user']);
+
 $page = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['page'])) ? $_GET['page'] : 'initial';
 
 include_once "./model/userClass.php";
 include_once "./controller/controllerUser.php";
-
-
 
 //load header if user logged or not
 if ($page != 'login' && $page != 'register') {
@@ -25,7 +30,7 @@ else if ($page === 'login' && !isset($_SESSION['user'])) {
     include_once "./view/login_user.php";
 }
 else if ($page === 'register' && !isset($_SESSION['user'])) {
-    include_once "./view/register.php";
+    include_once "./view/register_user.php";
 }
 else if ($page === 'edit' && !isset($_SESSION['user'])) {
     include_once "./view/edit_user.php";
@@ -33,7 +38,7 @@ else if ($page === 'edit' && !isset($_SESSION['user'])) {
 
 //user logged
 else if ($page === 'user' && isset($_SESSION['user'])) {
-    include_once './view/userView.php';
+    include_once './view/user_view.php';
 }
 
 else if ($page === 'error') {

@@ -5,7 +5,7 @@
 	</label>
 	<div>
 		<label class="col-6">
-			<input type="checkbox" /> Lembrar-se</label>
+			<input type="checkbox" name="remember" /> Lembrar-se</label>
 		<a href="">Esqueci a senha?</a>
 	</div>
 	<button type="submit" name="submit" value="login">

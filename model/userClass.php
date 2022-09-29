@@ -50,19 +50,20 @@ class User{
         }
     }
     public function register(){
-        $sql = "INSERT INTO `users`(`name`,`email`,`password`) values (:n, :e, :p)";
+        $sql = "INSERT INTO `users`(`name`, `email`, `password`, `merchant`, `data_increament`) values (:n, :e, :p, :m, NOW())";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':n', $this->getName());
         $stmt->bindValue(':e', $this->getEmail());
         $stmt->bindValue(':p', $this->getPassword());
+        $stmt->bindValue(':m', $this->getMerchant());
         if(!$this->searchUser()){
             return $stmt->execute();
         }
         return false;
     }
     public function editInfo(){
-        if ($_SESSION && isset($_SESSION['user'])) {
+        if ($_SESSION && isset($_SESSION['user']['id'])) {
             $sql = "UPDATE `users` SET `image_path` = :img, `name` = :n, `phone` = :p WHERE `id` = :id";
             $db = Database::connection();
             $stmt = $db->prepare($sql);
@@ -83,21 +84,31 @@ class User{
             }
         }
     }
-    public function editSecurity(){
+    public function editEmail() {
         if ($_SESSION && isset($_SESSION['user']['id'])) {
             $sql = "UPDATE `users` SET `password` = :p, `email` = :e WHERE `id` = :id";
             $db = Database::connection();
             $stmt = $db->prepare($sql);
-            $stmt->bindValue(':p', $this->getPassword());
             $stmt->bindValue(':e', $this->getEmail());
             $stmt->bindValue(':id', $_SESSION['user']['id']);
-            $stmt->execute();
+            return $stmt->execute();
         }
     }
-    public function verifyAcess(){
+    public function editPassword() {
+        if ($_SESSION && isset($_SESSION['user']['id'])) {
+            $sql = "UPDATE `users` SET `password` = :p, `email` = :e WHERE `id` = :id";
+            $db = Database::connection();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':e', $this->getPassword());
+            $stmt->bindValue(':id', $_SESSION['user']['id']);
+            return $stmt->execute();
+        }
+        return false;
+    }
+    public function verifyAcess($passwordV){
         if ($_SESSION) {
             $password = $this->searchUserByEmail($_SESSION['user']['email']);
-            return ($password != null && $password === $this->getPassword()); 
+            return ($password != null && $password === sha1($passwordV)); 
         }
     }
 
