@@ -1,3 +1,4 @@
+<img src="<?= sprintf("%s/%s", constant("URL"),substr($profile['image_path'],3))?>" class="rounded-circle" alt="" />
 <h1><?= $profile['name']?></h1>
 <h1><?= $profile['email']?></h1>
 <h1><?= $profile['phone']?></h1>

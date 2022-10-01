@@ -12,7 +12,7 @@ $submit = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['submit'])) ? $
 $image = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_FILES['image'])) ? $_FILES['image'] : null;
 $name = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['name'])) ? $_POST['name'] : null;
 $phone = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['phone'])) ? $_POST['phone'] : null;
-$merchant = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['merchant'])) ? $_POST['merchant'] : null;
+$merchant = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['merchant'])) ? true : false;
 $email = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['email'])) ? $_POST['email'] : null;
 $confirm_email = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['confirm_email'])) ? $_POST['confirm_email'] : null;
 $password = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['password'])) ? $_POST['password'] : null;
@@ -21,6 +21,7 @@ $confirm_password = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['conf
 $passwordVerify = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['password_verify'])) ? $_POST['password_verify'] : null;
 $remember = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['remember'])) ? $_POST['remember'] : null;
 $idU = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['idU'])) ? $_GET['idU'] : null;
+$alert = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['alert'])) ? $_GET['alert'] : null;
 
 //if logout = true, delete session user
 $logout = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['logout'])) ? $_GET['logout'] : false;
@@ -36,15 +37,15 @@ if ($submit === 'register') {
     if ($email === $confirm_email) {
         if ($password === $confirm_password) {
             if ($user->register()) {
-                header('Location: ../?page=login&alert=successRegister');
+                header(sprintf('Location: %s/?page=login&alert=sucessR', constant("URL")));
             } else {
-                header('Location: ../?page=register&alert=errorRegister');
+                header(sprintf('Location: %s/?page=register&alert=error', constant("URL")));
             }
         } else {
-            header('Location: ../?page=register&alert=errorPassword');
+            header(sprintf('Location: %s/?page=register&alert=errorPass', constant("URL")));
         }
     } else {
-        header('Location: ../?page=register&alert=emailError');
+        header(sprintf('Location: %s/?page=register&alert=errorEmail', constant("URL")));
     }
 }
 if ($submit === 'login') {

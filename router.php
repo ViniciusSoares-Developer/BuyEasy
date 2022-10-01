@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-define("URL", "http://localhost/projects/backPHP");
-
 if ($_COOKIE) {
     if (isset($_COOKIE['buyeasy_user_name'])) {
         $_COOKIE['buyeasy_user_name'];
@@ -72,7 +70,7 @@ else if ($page === 'error') {
 
 //page not found
 else {
-    header('Location: ./?page=error');
+    header('Location: ./?page=initial');
 }
 
 //block footer
