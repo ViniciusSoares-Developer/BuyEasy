@@ -1,0 +1,41 @@
+[33mcommit b95e3d37051759da49668bbfdb130f441f1db358[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Vinicius Soares <viniciussoaresaqw@hotmail.com>
+Date:   Sat Oct 1 18:16:03 2022 -0300
+
+    user design and routing and push products database
+
+[33mcommit 2c5b86e84ce360ad15fd48b31bc74989b320969c[m[33m ([m[1;31morigin/back-end[m[33m)[m
+Author: Vinicius Soares <viniciussoaresaqw@hotmail.com>
+Date:   Sat Oct 1 11:03:29 2022 -0300
+
+    Products and users
+
+[33mcommit 2b6988dedbccbcf7b411181b8ca6074ecd73b867[m
+Author: Vinicius Soares <viniciussoaresaqw@hotmail.com>
+Date:   Thu Sep 29 17:42:37 2022 -0300
+
+    user cookie and edit account
+
+[33mcommit 8cd5e4061332528655e1b3725e3baf891479d4f8[m
+Author: Vinicius Soares <viniciussoaresaqw@hotmail.com>
+Date:   Wed Sep 28 17:31:47 2022 -0300
+
+    user loggin, register and edit
+
+[33mcommit ae1ab8ce3d73eab5c349ce960c224af7dc0ce58c[m
+Author: Vinicius Soares <viniciussoaresaqw@hotmail.com>
+Date:   Wed Sep 28 15:31:39 2022 -0300
+
+    initial
+
+[33mcommit c803b78753b341c9f57efdac546fd117b807d2c0[m
+Author: Vinicius Soares <viniciussoaresaqw@hotmail.com>
+Date:   Thu Sep 8 10:06:01 2022 -0300
+
+    Code
+
+[33mcommit 3191a9f12b191b29bb7eead7a42dc61919a83081[m
+Author: Vinícius Soares <83523970+ViniciusSoares-Developer@users.noreply.github.com>
+Date:   Thu Sep 8 10:01:00 2022 -0300
+
+    Initial commit
