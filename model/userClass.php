@@ -1,5 +1,4 @@
 <?php
-@session_start();
 
 class User{
     private $name;
@@ -67,12 +66,12 @@ class User{
             $sql = "UPDATE `users` SET `image_path` = :img, `name` = :n, `phone` = :p WHERE `id` = :id";
             $db = Database::connection();
             $stmt = $db->prepare($sql);
-
+            
             $img = $this->getImage();
-            $folder = "./archives/users";
+            $folder = "../archives/users/";
             $nameArchive = uniqid();
             $extension = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
-            if ($extension != "jpg" && $extension != "png") die("Tipo invalido");
+            if ($extension != "jpg" && $extension != "png") return false;
             $path = $folder . $nameArchive . "." . $extension;
             
             if (move_uploaded_file($img['tmp_name'], $path)) {
@@ -80,7 +79,7 @@ class User{
                 $stmt->bindValue(':n', $this->getName());
                 $stmt->bindValue(':p', $this->getPhone());
                 $stmt->bindValue(':id', $_SESSION['user']['id']);
-                $stmt->execute();
+                return $stmt->execute();
             }
         }
     }
@@ -110,6 +109,14 @@ class User{
             $password = $this->searchUserByEmail($_SESSION['user']['email']);
             return ($password != null && $password === sha1($passwordV)); 
         }
+    }
+    public function getUserById($id) {
+        $sql = "SELECT * FROM `users` WHERE `id` = $id";
+        $db = Database::connection();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return !empty($list)?$list[0]:null;
     }
 
     //Getters and Setters
