@@ -351,8 +351,8 @@ MigrationBackup/
 
 #images archives
 
-archives/products/*
-archives/users/*
+!.archive/products/cart.png
+!.archive/products/img.png
 
-!archive/products/cart.png
-!archive/products/img.png
+archive/products/*
+archive/users/*
