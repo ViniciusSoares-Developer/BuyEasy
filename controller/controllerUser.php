@@ -12,6 +12,9 @@ $submit = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['submit'])) ? $
 $image = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_FILES['image'])) ? $_FILES['image'] : null;
 $name = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['name'])) ? $_POST['name'] : null;
 $phone = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['phone'])) ? $_POST['phone'] : null;
+$whatsapp = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['whatsapp'])) ? $_POST['whatsapp'] : null;
+$instagram = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['instagram'])) ? $_POST['instagram'] : null;
+$facebook = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['facebook'])) ? $_POST['facebook'] : null;
 $merchant = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['merchant'])) ? true : false;
 $email = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['email'])) ? $_POST['email'] : null;
 $confirm_email = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['confirm_email'])) ? $_POST['confirm_email'] : null;
@@ -31,7 +34,7 @@ if ($_SESSION && $logout == true) {
     header(sprintf('Location: %s/?page=initial', constant("URL")));
 }
 
-$user = new User($name, $password, $email, $merchant, $phone, $image);
+$user = new User($name, $password, $email, $merchant, $phone, $whatsapp, $instagram, $facebook, $image);
 
 if ($submit === 'register') {
     if ($email === $confirm_email) {
@@ -63,8 +66,18 @@ if ($submit === 'login') {
     else header(sprintf('Location: %s/?page=login&alert=error', constant("URL")));
 }
 if ($submit === 'editInformation') {
-    $user->editInfo() ? header(sprintf('Location: %s/?page=initial', constant("URL"))):
-    header(sprintf('Location: %s/?page=edit&id=%s&alert=errInfo', constant("URL"), $_SESSION['user']['id']));
+    if ($user->editInfo()){
+        $_SESSION['user'] = $user->getUserById($_SESSION['user']['id']);
+        header(sprintf('Location: %s/?page=initial', constant("URL")));
+    }
+    else header(sprintf('Location: %s/?page=edit&id=%s&alert=errInfo', constant("URL"), $_SESSION['user']['id']));
+}
+if ($submit === 'editImage') {
+    if ($user->editImage()) {
+        $_SESSION['user'] = $user->getUserById($_SESSION['user']['id']); 
+        header(sprintf('Location: %s/?page=initial', constant("URL")));
+    }
+    else header(sprintf('Location: %s/?page=edit&id=%s&alert=errInfo', constant("URL"), $_SESSION['user']['id']));
 }
 if ($submit === 'editEmail') {
     if ($email === $confirm_email) {

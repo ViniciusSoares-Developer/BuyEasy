@@ -52,17 +52,17 @@
             </a>
         </div>
     </section>
-    <section class="row">
+    <section class="row bg-primary rounded px-2">
         <?php for($i = 0; $i < 8; $i++) : ?>
             <?php
-                $value = array_rand($productList);
+                $value = $productList ? array_rand($productList) : null;
                 if(isset($productList[$i])):?>
-            <div class="col-sm-3 mb-4">
-                <a href="" style="text-decoration: none;">
-                    <div class="card w-100">
+            <div class="col-6 col-sm-3 my-4">
+                <a href="?page=product&idP=<?= $productList[$value]['id']?>" style="text-decoration: none;">
+                    <div class="card w-100 text-center border-0">
                         <img class="card-img-top"
                         src="<?= sprintf("%s/%s", constant("URL"),substr($productList[$value]['image_path'],3))?>"
-                        style="height: 20vw; min-height: 250px;" alt="Card image">
+                        style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
                         <div class="card-body">
                             <h4 class="card-title"><?= $productList[$value]['name']?></h4>
                             <p class="card-text">R$ <?= $productList[$value]['price']?></p>

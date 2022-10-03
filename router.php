@@ -1,79 +1,64 @@
 <?php
-session_start();
 
-if ($_COOKIE) {
-    if (isset($_COOKIE['buyeasy_user_name'])) {
-        $_COOKIE['buyeasy_user_name'];
-    }
+if (
+    $page == 'initial'
+    && (!isset($_SESSION['user'])
+        || !$_SESSION['user']['merchant'])
+) {
+    include_once "./view/initial_user.php";
 }
-
-$page = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['page'])) ? $_GET['page'] : 'initial';
-
-include_once "./model/connectServer.php";
-
-include_once "./model/userClass.php";
-include_once "./controller/controllerUser.php";
-
-include_once "./model/productClass.php";
-include_once "./controller/controllerProduct.php";
-
-//load header if user logged or not
-if ($page != 'login' && $page != 'register') {
-    include_once "./view/shared/header.php";
+elseif (
+    $page === 'initial'
+    && (isset($_SESSION['user'])
+        || $_SESSION['user']['merchant'])
+) {
+    include_once "./view/initial_merchant.php";
 }
-
-//charge pages global
-if ($page === 'initial') {
-    include_once "./view/initial.php";
-}
-else if ($page === 'product' && $idP) {
+elseif ($page === 'product' && $idP) {
     include_once "./view/product.php";
 }
-else if ($page === 'search') {
+elseif ($page === 'search') {
     include_once "./view/search_view.php";
 }
-else if ($page === 'user' && $idU) {
+elseif ($page === 'user' && $idU) {
     include_once './view/user_view.php';
 }
 
 //user not logged
-else if ($page === 'login' && !isset($_SESSION['user'])) {
-    include_once "./view/login_user.php";
+elseif ($page === 'login' && !isset($_SESSION['user'])) {
+    include_once "./view/forms/login_user.php";
 }
-else if ($page === 'register' && !isset($_SESSION['user'])) {
-    include_once "./view/register_user.php";
+elseif ($page === 'register' && !isset($_SESSION['user'])) {
+    include_once "./view/forms/register_user.php";
 }
 
 //user logged
-else if ($page === 'profile') {
+elseif ($page === 'profile') {
     include_once './view/user_view.php';
 }
-else if ($page === 'edit_user' && isset($_SESSION['user'])) {
-    include_once "./view/edit_user.php";
-}
-//user logged and merchant true
-else if ($page === 'add_product'
-        && isset($_SESSION['user'])
-        && $_SESSION['user']['merchant']) {
-    include_once "./view/register_product.php";
-}
-else if ($page === 'edit_product'
-        && isset($_SESSION['user'])
-        && $_SESSION['user']['merchant']
-        && $idP) {
-    include_once "./view/edit_product.php";
+elseif ($page === 'edit_user' && isset($_SESSION['user'])) {
+    include_once "./view/forms/edit_user.php";
 }
 
-else if ($page === 'error') {
-    include_once "./view/error.php";
+//user logged and merchant true
+elseif (
+    $page === 'add_product'
+    && isset($_SESSION['user'])
+    && $_SESSION['user']['merchant']
+) {
+    include_once "./view/forms/register_product.php";
+}
+elseif (
+    $page === 'edit_product'
+    && isset($_SESSION['user'])
+    && $_SESSION['user']['merchant']
+    && $idP
+) {
+    include_once "./view/forms/edit_product.php";
 }
 
 //page not found
 else {
-    header('Location: ./?page=initial');
-}
-
-//block footer
-if ($page != 'login' && $page != 'register') {
-    include_once "./view/shared/footer.php";
+    echo "error Not found";
+    echo "<br><a href=\"?page=initial\">voltar</a>";
 }

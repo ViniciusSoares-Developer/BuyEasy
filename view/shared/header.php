@@ -23,7 +23,7 @@
     <?php else : ?>
         <section class="col-sm-5 my-2">
             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                <a href="?page=user&idU=<?= $_SESSION['user']['id'] ?>" class="me-2"><img src="<?= sprintf("%s/%s", constant("URL"), substr($_SESSION['user']['image_path'], 3)) ?>" class="rounded-circle" alt="" width="40" height="40" /></a>
+                <a href="?page=user&idU=<?= $_SESSION['user']['id'] ?>" class="me-2"><img src="<?= sprintf("%s/%s", constant("URL"), substr($_SESSION['user']['image_path'], 3)) ?>" class="rounded-circle border border-primary" alt="" width="40" height="40" /></a>
                 <div class="dropdown">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
                         <i class="fas fa-list"></i>

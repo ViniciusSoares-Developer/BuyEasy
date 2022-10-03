@@ -13,6 +13,9 @@ class Product {
         $this->setDescription($description);
     }
 
+    public function permissionAcessEdit() {
+
+    }
     public function getProducts() {
         $sql = "SELECT * FROM `products`";
         $db = Database::connection();
@@ -28,6 +31,14 @@ class Product {
         $stmt->execute();
         $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return !empty($list)?$list:null;
+    }
+    public function getProductByIdAndUser($idP, $idU) {
+        $sql = "SELECT * FROM `products` WHERE `id_merchant` = $idU AND `id` = $idP";
+        $db = Database::connection();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return !empty($list)?$list[0]:null;
     }
     public function getProduct($idP) {
         $sql = "SELECT products.*, users.id id_user, users.image_path image_user, users.name name_user
@@ -76,7 +87,7 @@ class Product {
         `name` = :n,
         `price` = :p,
         `description` = :d
-        WHERE `id` = $id";
+        WHERE `id` = $id and `id_merchant` = $_SESSION[user][id]";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
 
@@ -97,10 +108,11 @@ class Product {
         }
     }
     public function remove($id) {
-        $sql = "DELETE FROM `products` WHERE `id` = $id";
+        $sql = "DELETE FROM `products`
+        WHERE `id` = $id and `id_merchant` = ".$_SESSION['user']['id'];
         $db = Database::connection();
         $stmt = $db->prepare($sql);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     //Getters and setters

@@ -4,6 +4,9 @@
     background-color: blue;
     background-image: url("../images/Frame\ 1.png")!important;
 }
+.img-user {
+    height: 20vw;
+}
 
 @media screen and (max-width: 575px) {
     .main-form {
@@ -15,5 +18,11 @@
         min-height: 100vh;
         height: auto;
         border: none;
+    }
+}
+@media screen and (max-width: 767px) {
+    .img-user {
+        height: 50vw;
+        max-height: 270px;
     }
 }

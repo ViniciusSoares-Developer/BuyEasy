@@ -8,7 +8,7 @@
         <?php elseif ($alert === 'sucessR'):?>
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Sucesso!</strong> Dados invalidos ou conta inexistente
+                <strong>Sucesso!</strong> Usuario cadastro com sucesso realize o login
             </div>
         <?php endif; ?>
     </div>

@@ -24,9 +24,6 @@ if ($submit === 'edit' && $idP != null) {
     if ($product->edit($idP)) {header(sprintf('Location: %s/?page=initial', constant("URL")));die;}
     else {header(sprintf('Location: %s/?page=edit_product&idP=%s&alert=err', constant("URL"), $idP));die;}
 }
-if ($submit === 'remove') {
-    $product->remove($idP);
-}
 if ($submit === 'search') {
     $productList = $product->getProductsByName($search);
     global $productList;
@@ -34,6 +31,12 @@ if ($submit === 'search') {
 else {
     global $idP;
     if ($idP) {
+        if (isset($_SESSION['user']) and $_SESSION['user']['merchant']) {
+            $productListUserID = $product->getProductByIdAndUser($idP, $_SESSION['user']['id']);
+            if (empty($productListUserID)) {
+                header(sprintf('Location: %s/?page=initial', constant("URL")));
+            }
+        }
         $productList = $product->getProduct($idP);
     }
     else if ($search) {
@@ -41,8 +44,14 @@ else {
     }else {
         $productList = $product->getProducts();
     }
-    if ($idU) {
-        $productListUser = $product->getProductsByUser($idU);
+    if (isset($idU) || (isset($_SESSION['user']) and $_SESSION['user']['merchant'])) {
+        $productListUser = isset($idU) ? $product->getProductsByUser($idU) : $product->getProductsByUser($_SESSION['user']['id']);
+    }
+    if ($page === 'remove'
+        && isset($_SESSION['user'])
+        && $idP != null) {
+        if ($product->remove($idP)) {header(sprintf('Location: %s/?page=initial&alert=successRemove', constant("URL")));die;}
+        else {header(sprintf('Location: %s/?page=initial&alert=errRemove', constant("URL"), $idP));die;}
     }
 }
 
