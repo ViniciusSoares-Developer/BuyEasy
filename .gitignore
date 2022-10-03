@@ -354,5 +354,5 @@ MigrationBackup/
 archives/products/*
 archives/users/*
 
-!archive/products/car.png
+!archive/products/cart.png
 !archive/products/img.png
