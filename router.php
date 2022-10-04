@@ -15,7 +15,7 @@ elseif (
     include_once "./view/initial_merchant.php";
 }
 elseif ($page === 'product' && $idP) {
-    include_once "./view/product.php";
+    include_once "./view/product_view.php";
 }
 elseif ($page === 'search') {
     include_once "./view/search_view.php";

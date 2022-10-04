@@ -51,12 +51,39 @@
 </header>
 <div class="offcanvas offcanvas-start" id="cart">
     <div class="offcanvas-header">
-        <h1 class="offcanvas-title">Heading</h1>
+        <h1 class="offcanvas-title">Carrinho</h1>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
-        <p>Some text lorem ipsum.</p>
-        <p>Some text lorem ipsum.</p>
-        <button class="btn btn-secondary" type="button">A Button</button>
+        <?php if (isset($_SESSION['cart'])) :
+            foreach ($_SESSION['cart'] as $item) : ?>
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-3 p-2">
+                            <img src="<?= sprintf("%s/%s", constant("URL"), substr($item['img'], 3)) ?>" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-7">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $item['name']?></h5>
+                                <p class="card-text">R$: <?= $item['price']?></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="input-group row m-0 align-items-center h-100">
+                                <button class="btn btn-outline-secondary p-0 col-4 h-100">-</button>
+                                <input class="form-control p-1 col-4 h-100" type="number" step="1" min="0" value="<?= $item['quant']?>">
+                                <button class="btn btn-outline-secondary p-0 col-4 h-100">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <?php endforeach;
+        endif; ?>
+    </div>
+    <div class="offcanvas-footer">
+        <form method="POST">
+            
+            <button type="submit" name="cart" value="confirm" class="btn btn-success w-100">Finalizar compra</button>
+        </form>
     </div>
 </div>

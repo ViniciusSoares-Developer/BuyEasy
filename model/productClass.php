@@ -13,9 +13,6 @@ class Product {
         $this->setDescription($description);
     }
 
-    public function permissionAcessEdit() {
-
-    }
     public function getProducts() {
         $sql = "SELECT * FROM `products`";
         $db = Database::connection();
