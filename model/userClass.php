@@ -157,6 +157,15 @@ class User
         $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return !empty($list) ? $list[0] : null;
     }
+    public function getUsers()
+    {
+        $sql = "SELECT * FROM `users` ORDER BY `id` DESC";
+        $db = Database::connection();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return !empty($list) ? $list : null;
+    }
 
     //Getters and Setters
     public function getName()

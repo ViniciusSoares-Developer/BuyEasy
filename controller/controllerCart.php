@@ -1,7 +1,10 @@
 <?php
 
-$action = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['cart'])) ? $_POST['cart'] : null;
+$cartAction = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['cart'])) ? $_POST['cart'] : null;
 $item = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['item'])) ? $_POST['item'] : null;
+
+$index = ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['index'])) ? $_GET['index'] : null;
+$quantity = ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['quantity'])) ? $_GET['quantity'] : null;
 
 @define("URL", "http://localhost/projects/backPHP");
 if (isset($_SESSION['cart'])) {
@@ -11,22 +14,17 @@ else {
     $listCard = [];
 }
 
-if ($action === 'add') {
-    foreach ($listCard as $index => $value) {
-        if ($value['id'] === $item['id']) {
-            $listCard[$index]['quant'] += 1;
-            break;
-        }
-        if (count($listCard) - 1 === $index) {
-            array_push($listCard, $item);
-        }
-    }
-    if (empty($listCard)) {
-        array_push($listCard, $item);
-    }
-    $_SESSION['cart'] = $listCard;
+$cart = new Cart();
+
+if ($cartAction === 'add') {
+    $cart->addItemToList($item);
     header(sprintf('Location: %s/?page=initial', constant("URL")));
 }
-if ($action === 'confirm') {
-    var_dump("confirm"); die;
+if ($cartAction === 'confirm') {
+    $cart->confirmBuy();
+    header(sprintf('Location: %s/?page=initial', constant("URL")));
+}
+if ($index != null) {
+    $cart->updateQuantityItem($index, $quantity);
+    header(sprintf('Location: %s/?page=initial', constant("URL")));
 }

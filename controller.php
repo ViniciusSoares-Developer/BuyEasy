@@ -11,6 +11,7 @@ $page = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['page'])) ? $_GET['
 
 include_once "./model/connectServer.php";
 
+include_once "./model/cartClass.php";
 include_once "./controller/controllerCart.php";
 
 include_once "./model/userClass.php";
@@ -18,6 +19,9 @@ include_once "./controller/controllerUser.php";
 
 include_once "./model/productClass.php";
 include_once "./controller/controllerProduct.php";
+
+include_once "./model/commenterClass.php";
+include_once "./controller/controllerCommenter.php";
 
 if (
     $page != 'login'

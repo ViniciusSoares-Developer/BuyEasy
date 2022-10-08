@@ -10,6 +10,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 <strong>Sucesso!</strong> Usuario cadastro com sucesso realize o login
             </div>
+        <?php elseif ($alert === 'cart'):?>
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Atenção!</strong> faça Login para finalizar a compra
+            </div>
         <?php endif; ?>
     </div>
     <div class="container form-max rounded-4 p-4" style="background-color: white; max-width: 600px;">

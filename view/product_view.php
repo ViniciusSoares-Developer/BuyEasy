@@ -1,4 +1,4 @@
-<main class="container">
+<main class="container mt-4">
     <section class="row text-primary">
         <div class="col-md-5">
             <img class="img-fluid h-100 border border-5 border-primary rounded" src="<?= sprintf("%s/%s", constant("URL"), substr($product['image_path'], 3)) ?>" alt="">
@@ -10,10 +10,10 @@
             <section class="row my-3 justify-content-center">
                 <div class="col-md-6">
                     <form method="POST">
-                        <input type="hidden" name="item[id]" value="<?= $product['id']?>">
-                        <input type="hidden" name="item[img]" value="<?= $product['image_path']?>">
-                        <input type="hidden" name="item[name]" value="<?= $product['name']?>">
-                        <input type="hidden" name="item[price]" value="<?= $product['price']?>">
+                        <input type="hidden" name="item[id]" value="<?= $product['id'] ?>">
+                        <input type="hidden" name="item[img]" value="<?= $product['image_path'] ?>">
+                        <input type="hidden" name="item[name]" value="<?= $product['name'] ?>">
+                        <input type="hidden" name="item[price]" value="<?= $product['price'] ?>">
                         <input type="hidden" name="item[quant]" value="1">
                         <button type="submit" name="cart" value="add" class="btn btn-primary m-2">Adicionar ao carrinho</button>
                     </form>
@@ -24,7 +24,7 @@
             </section>
         </div>
     </section>
-    <section class="row justify-content-center">
+    <section class="row my-4 justify-content-center">
         <div class="col-3">
             <a class="text-decoration-none text-center d-block" href="?page=user&idU=<?= $product['id_user'] ?>">
                 <img class="img-fluid" style="height: 18vw;" src="<?= sprintf("%s/%s", constant("URL"), substr($product['image_user'], 3)) ?>" alt="">
@@ -32,25 +32,100 @@
             </a>
         </div>
     </section>
-    <section class="row bg-primary rounded px-2">
-        <?php for($i = 0; $i < 8; $i++) : ?>
-            <?php
-                $value = $productList ? array_rand($productList) : null;
-                if(isset($productList[$i]) && $productList[$value]['id'] !== $product['id']):?>
-            <div class="col-6 col-sm-3 my-4">
-                <a href="?page=product&idP=<?= $productList[$value]['id']?>" style="text-decoration: none;">
-                    <div class="card w-100 text-center border-0">
-                        <img class="card-img-top"
-                        src="<?= sprintf("%s/%s", constant("URL"),substr($productList[$value]['image_path'],3))?>"
-                        style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
-                        <div class="card-body">
-                            <h4 class="card-title"><?= $productList[$value]['name']?></h4>
-                            <p class="card-text">R$ <?= $productList[$value]['price']?></p>
-                        </div>
+    <?php if (isset($_SESSION['user']) and !$_SESSION['user']['merchant']) : ?>
+        <section class="row my-4">
+            <form method="POST">
+                <input class="form-range w-auto" type="range" name="star_quantity" min="0" max="5" value="0">
+                <label class="fs-3" for="star_quantity"><i class="fas fa-star text-primary"></i></label>
+                <textarea class="col-12 rounded border border-primary" name="commenter" cols="30" rows="5" maxlength="255" placeholder="Max: 255"></textarea>
+                <button type="submit" name="commenter-action" value="commenter" class="col-12 btn btn-primary">Comentar</button>
+            </form>
+        </section>
+    <?php endif; ?>
+    <?php if ($productCommenters) : ?>
+        <section class="row my-4">
+            <div class="col-12 my-2">
+                <div class="card">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h1>Comentarios</h1>
                     </div>
-                </a>
+                    <div class="card-body text-primary">
+                        <?php for ($i = 0; $i < 5; $i++) : ?>
+                            <?php if (!empty($productCommenters[$i])) : ?>
+                                <div class="col-12 my-2">
+                                    <div class="card">
+                                        <div class="card-header bg-primary text-white">
+                                            <h4 class="float-start"><?= $productCommenters[$i]['name'] ?></h4>
+                                            <div class="float-end">
+                                                <?php for ($j = 0; $j < $productCommenters[$i]['star']; $j++) : ?>
+                                                    <i class="fas fa-star text-white"></i>
+                                                <?php endfor; ?>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-primary">
+                                            <p><?= $productCommenters[$i]['commenter'] ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#commenters">
+                            Ver todos os comentarios
+                        </button>
+                    </div>
+                </div>
             </div>
-            <?php endif;?>
+        </section>
+    <?php endif; ?>
+    <section class="row bg-primary rounded px-2">
+        <?php for ($i = 0; $i < 8; $i++) : ?>
+            <?php
+            $value = $productList ? array_rand($productList) : null;
+            if (isset($productList[$i]) && $productList[$value]['id'] !== $product['id']) : ?>
+                <div class="col-6 col-sm-3 my-4">
+                    <a href="?page=product&idP=<?= $productList[$value]['id'] ?>" style="text-decoration: none;">
+                        <div class="card w-100 text-center border-0">
+                            <img class="card-img-top" src="<?= sprintf("%s/%s", constant("URL"), substr($productList[$value]['image_path'], 3)) ?>" style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title"><?= $productList[$value]['name'] ?></h4>
+                                <p class="card-text">R$ <?= $productList[$value]['price'] ?></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php endif; ?>
         <?php endfor; ?>
     </section>
 </main>
+<div class="modal fade" id="commenters" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary" id="staticBackdropLabel">Comentarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <?php foreach ($productCommenters as $commenter) : ?>
+                    <div class="col-12 my-3">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="float-start"><?= $commenter['name'] ?></h4>
+                                <div class="float-end">
+                                    <?php for ($i = 0; $i < $commenter['star']; $i++) : ?>
+                                        <i class="fas fa-star text-white"></i>
+                                    <?php endfor; ?>
+                                </div>
+                            </div>
+                            <div class="card-body text-primary">
+                                <p><?= $commenter['commenter'] ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

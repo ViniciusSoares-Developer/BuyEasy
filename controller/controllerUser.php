@@ -103,6 +103,9 @@ else {
     if ($idU) {
         $profile = $user->getUserById($idU);
     }
+    else {
+        $inscribeProfiles = $user->getUsers();
+    }
 }
 
 // header(sprintf('Location: %s/?page=initial', constant("URL")));

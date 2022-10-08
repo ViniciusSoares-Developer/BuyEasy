@@ -37,8 +37,8 @@ if ($submit === 'edit' && $idP != null) {
 if ($submit === 'search') {
     $productList = $product->getProductsByName($search);
 } else {
-    global $idP;
     if ($idP) {
+        global $idP;
         if (
             $page === 'remove'
             && isset($_SESSION['user'])
@@ -67,12 +67,9 @@ if ($submit === 'search') {
         global $productList;
     }
     else {
+        if (isset($idU) || (isset($_SESSION['user']) and $_SESSION['user']['merchant'])) {
+            $productListUser = isset($idU) ? $product->getProductsByUser($idU) : $product->getProductsByUser($_SESSION['user']['id']);
+        }
         $productList = $product->getProducts();
     }
-
-    if (isset($idU) || (isset($_SESSION['user']) and $_SESSION['user']['merchant'])) {
-        $productListUser = isset($idU) ? $product->getProductsByUser($idU) : $product->getProductsByUser($_SESSION['user']['id']);
-    }
 }
-
-// header(sprintf('Location: %s/?page=initial', constant("URL")));
