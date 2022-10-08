@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03-Out-2022 às 22:20
+-- Tempo de geração: 08-Out-2022 às 04:15
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -20,6 +20,45 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `buyeasy_db`
 --
+CREATE DATABASE IF NOT EXISTS `buyeasy_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `buyeasy_db`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cart_product`
+--
+
+CREATE TABLE `cart_product` (
+  `id_cart` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `product_quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `commenter`
+--
+
+CREATE TABLE `commenter` (
+  `id` int(11) NOT NULL,
+  `commenter` text DEFAULT NULL,
+  `star` int(11) DEFAULT NULL,
+  `id_user_commenter` int(11) NOT NULL,
+  `id_product` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -62,6 +101,28 @@ CREATE TABLE `users` (
 --
 
 --
+-- Índices para tabela `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_ID_USER` (`id_user`);
+
+--
+-- Índices para tabela `cart_product`
+--
+ALTER TABLE `cart_product`
+  ADD KEY `FK_ID_CART` (`id_cart`),
+  ADD KEY `FK_ID_PRODUCT` (`id_product`);
+
+--
+-- Índices para tabela `commenter`
+--
+ALTER TABLE `commenter`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_ID_USER_COMMENTER` (`id_user_commenter`),
+  ADD KEY `FK_ID_PRODUCT_COMMENTER` (`id_product`);
+
+--
 -- Índices para tabela `products`
 --
 ALTER TABLE `products`
@@ -80,6 +141,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de tabela `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `commenter`
+--
+ALTER TABLE `commenter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `products`
 --
 ALTER TABLE `products`
@@ -94,6 +167,26 @@ ALTER TABLE `users`
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `FK_ID_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limitadores para a tabela `cart_product`
+--
+ALTER TABLE `cart_product`
+  ADD CONSTRAINT `FK_ID_CART` FOREIGN KEY (`id_cart`) REFERENCES `cart` (`id`),
+  ADD CONSTRAINT `FK_ID_PRODUCT` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
+
+--
+-- Limitadores para a tabela `commenter`
+--
+ALTER TABLE `commenter`
+  ADD CONSTRAINT `FK_ID_PRODUCT_COMMENTER` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `FK_ID_USER_COMMENTER` FOREIGN KEY (`id_user_commenter`) REFERENCES `users` (`id`);
 
 --
 -- Limitadores para a tabela `products`
