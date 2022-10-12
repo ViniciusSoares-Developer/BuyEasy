@@ -8,6 +8,7 @@ if ($_COOKIE) {
 }
 
 $page = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['page'])) ? $_GET['page'] : 'initial';
+$alert = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['alert'])) ? $_GET['alert'] : null;
 
 include_once "./model/connectServer.php";
 

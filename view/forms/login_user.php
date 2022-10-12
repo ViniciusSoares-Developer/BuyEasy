@@ -19,7 +19,7 @@
     </div>
     <div class="container form-max rounded-4 p-4" style="background-color: white; max-width: 600px;">
         <a class="position-absolute" href="?page=initial"><button class="btn btn-primary" type="button"><i class="fas fa-angle-left"></i></button></a>
-        <form class="px-5 pt-5" action="./controller/controllerUser.php" method="post">
+        <form class="px-5 pt-5" method="post">
             <div class="row">
                 <label class="form-label">Login:</label>
                 <input class="col-12 form-control" type="text" placeholder="Email / Nome de usuario" name="name" value="<?= isset($_COOKIE['buyeasy_user_name']) ? $_COOKIE['buyeasy_user_name'] : "" ?>" />
@@ -45,7 +45,7 @@
                     </label>
                 </div>
             </div>
-            <button class="w-100 mt-3 btn btn-primary" type="submit" name="submit" value="login">
+            <button class="w-100 mt-3 btn btn-primary" type="submit" name="submitU" value="login">
                 Entrar
             </button>
         </form>

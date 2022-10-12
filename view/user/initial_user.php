@@ -19,13 +19,13 @@
                     <?php if ($i == 0) : ?>
                         <div class="carousel-item active">
                             <a href="">
-                                <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
+                                <img src="https://via.placeholder.com/500x300" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
                             </a>
                         </div>
                     <?php else : ?>
                         <div class="carousel-item">
                             <a href="">
-                                <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
+                                <img src="https://via.placeholder.com/500x300" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
                             </a>
                         </div>
                     <?php endif; ?>
@@ -51,24 +51,8 @@
             </a>
         </div>
     </section>
-    <section class="row bg-primary rounded px-2">
-        <?php for ($i = 0; $i < 8; $i++) : ?>
-            <?php
-            // $value = $productList ? array_rand($productList) : null;
-            if (isset($productList[$i])) : ?>
-                <div class="col-6 col-sm-3 my-4">
-                    <a href="?page=product&idP=<?= $productList[$i]['id'] ?>" style="text-decoration: none;">
-                        <div class="card w-100 text-center border-0">
-                            <img class="card-img-top" src="<?= sprintf("%s/%s", constant("URL"), substr($productList[$i]['image_path'], 3)) ?>" style="height: 20vw; min-height: 100px;" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title"><?= $productList[$i]['name'] ?></h4>
-                                <p class="card-text">R$ <?= $productList[$i]['price'] ?></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            <?php endif; ?>
-        <?php endfor; ?>
+    <section class="row bg-primary rounded px-2 pt-4">
+        <?php require_once "view/template/listProducts.php";?>
     </section>
     <section class="row">
         <section class="col-md my-4">
@@ -111,17 +95,15 @@
                         <h1>Ultimas lojas registradas</h1>
                     </div>
                     <div class="card-body d-flex flex-column align-items-center text-primary">
-                        <?php for ($i = 0; $i < 5; $i++) : ?>
-                            <?php if (!empty($inscribeProfiles[$i]) and $inscribeProfiles[$i]['merchant']) : ?>
+                        <?php foreach ($recentSeller as $account) : ?>
                                 <div class="card w-50" style="min-width: 200px;">
-                                    <img src="<?= sprintf("%s/%s", constant("URL"), substr($inscribeProfiles[$i]['image_path'], 3)) ?>" class="card-img-top" alt="" style="height: 15vw; min-height: 200px;">
+                                    <img src="<?= sprintf("%s/%s", constant("URL"), $account['image_path']) ?>" class="card-img-top" alt="" style="height: 15vw; min-height: 200px;">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= $inscribeProfiles[$i]['name']?></h5>
-                                        <a href="?page=user&idU=<?= $inscribeProfiles[$i]['id'] ?>" class="btn btn-primary">Perfil</a>
+                                        <h5 class="card-title"><?= $account['name']?></h5>
+                                        <a href="?page=user&idU=<?= $account['id'] ?>" class="btn btn-primary">Perfil</a>
                                     </div>
                                 </div>
-                            <?php endif; ?>
-                        <?php endfor; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

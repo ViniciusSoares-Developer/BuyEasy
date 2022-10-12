@@ -19,7 +19,7 @@
 	</div>
 	<div class="container form-max rounded-4 p-4" style="background-color: white; max-width: 600px;">
 		<a class="position-absolute" href="?page=initial"><button class="btn btn-primary" type="button"><i class="fas fa-angle-left"></i></button></a>
-		<form class="px-5 pt-5" action="./controller/controllerUser.php" method="POST">
+		<form class="px-5 pt-5" method="POST">
 			<div class="row">
 				<label class="form-label">Nome de usuario:</label>
 				<input class="col-12 form-control" type="text" placeholder="Email / Nome de usuario" name="name" value="<?= isset($_COOKIE['buyeasy_user_name']) ? $_COOKIE['buyeasy_user_name'] : "" ?>" />
@@ -53,11 +53,11 @@
 			<div class="row col mt-2">
 				<div class="col-12 form-check">
 					<input class="form-check-input" type="checkbox" name="merchant">
-					<label for="merchant" class="form-check-label">Marque se for vendedor</label>
+					<label for="merchant" class="form-check-label">Comerciante</label>
 				</div>
 			</div>
 			<p class="text-center mt-2">ao se cadastrar aceita os <a href data-bs-toggle="modal" data-bs-target="#exampleModal">termos e condições</a></p>
-			<button class="w-100 btn btn-primary" type="submit" name="submit" value="register">
+			<button class="w-100 btn btn-primary" type="submit" name="submitU" value="register">
 				Registrar
 			</button>
 		</form>

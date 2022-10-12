@@ -6,7 +6,8 @@ $item = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['item'])) ? $_POS
 $index = ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['index'])) ? $_GET['index'] : null;
 $quantity = ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['quantity'])) ? $_GET['quantity'] : null;
 
-@define("URL", "http://localhost/projects/backPHP");
+@define("URL", "http://localhost/buyEasy");
+
 if (isset($_SESSION['cart'])) {
     $listCard = $_SESSION['cart'];
 }

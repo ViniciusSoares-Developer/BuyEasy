@@ -13,29 +13,33 @@ class Product {
         $this->setDescription($description);
     }
 
-    public function getProducts() {
-        $sql = "SELECT * FROM `products`";
+    public function getProducts($id) {
+        $sql = "SELECT * FROM `products` WHERE `id` <> $id ORDER BY  `id` DESC LIMIT 4";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return !empty($list)?$list:null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getProductsByUserLimit($idP, $idU) {
+        $sql = "SELECT * FROM `products` WHERE `id` <> $idP AND `id_merchant` = $idU ORDER BY `id` DESC LIMIT 4";
+        $db = Database::connection();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getProductsByUser($idU) {
         $sql = "SELECT * FROM `products` WHERE `id_merchant` = $idU";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return !empty($list)?$list:null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getProductByIdAndUser($idP, $idU) {
         $sql = "SELECT * FROM `products` WHERE `id_merchant` = $idU AND `id` = $idP";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return !empty($list)?$list[0]:null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getProduct($idP) {
         $sql = "SELECT products.*, users.id id_user, users.image_path image_user, users.name name_user
@@ -45,16 +49,14 @@ class Product {
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return !empty($list)?$list[0]:null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
     public function getProductsByName($name) {
         $sql = "SELECT * FROM `products` WHERE `name` LIKE '$name%' AND `id` BETWEEN 1 AND 10";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return !empty($list)?$list:null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function add() {
         $sql = "INSERT INTO `products`(`image_path`, `name`, `price`, `description`, `id_merchant`, `date_increament`)
@@ -63,7 +65,7 @@ class Product {
         $stmt = $db->prepare($sql);
 
         $img = $this->getImage();
-        $folder = "../archives/products/";
+        $folder = "archives/products/";
         $nameArchive = uniqid();
         $extension = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
         if ($extension != "jpg" && $extension != "png") return false;

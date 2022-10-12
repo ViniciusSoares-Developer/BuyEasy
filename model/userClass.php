@@ -5,7 +5,7 @@ class User
     private $name;
     private $email;
     private $password;
-    private $merchant;
+    private $type;
     private $phone;
     private $whatsapp;
     private $instagram;
@@ -17,7 +17,7 @@ class User
         $name,
         $password,
         $email,
-        $merchant,
+        $type,
         $phone,
         $whatsapp,
         $instagram,
@@ -27,7 +27,7 @@ class User
         $this->setName($name);
         $this->setEmail($email);
         $this->setPassword($password);
-        $this->setMerchant($merchant);
+        $this->settype($type);
         $this->setPhone($phone);
         $this->setWhatsapp($whatsapp);
         $this->setInstagram($instagram);
@@ -42,10 +42,14 @@ class User
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':l', $this->getName());
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($list) {
-            return $list[0];
-        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+    public function getUsersMerchant(){
+        $sql = "SELECT * FROM `users` WHERE `type` = 2 ORDER BY `id` DESC LIMIT 5;";
+        $db = Database::connection();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function searchUserByEmail($email)
     {
@@ -54,8 +58,7 @@ class User
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':e', $email);
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return !empty($list) ? $list[0] : null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function login()
     {
@@ -70,13 +73,13 @@ class User
     }
     public function register()
     {
-        $sql = "INSERT INTO `users`(`name`, `email`, `password`, `merchant`, `data_increament`) values (:n, :e, :p, :m, NOW())";
+        $sql = "INSERT INTO `users`(`name`, `email`, `password`, `type`, `data_increament`) values (:n, :e, :p, :m, NOW())";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':n', $this->getName());
         $stmt->bindValue(':e', $this->getEmail());
         $stmt->bindValue(':p', $this->getPassword());
-        $stmt->bindValue(':m', $this->getMerchant());
+        $stmt->bindValue(':m', $this->gettype());
         if (!$this->searchUser()) {
             return $stmt->execute();
         }
@@ -154,8 +157,7 @@ class User
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return !empty($list) ? $list[0] : null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
     public function getUsers()
     {
@@ -163,8 +165,11 @@ class User
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return !empty($list) ? $list : null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public static function levelAcess()
+    {
+        return isset($_SESSION['user']) ? $_SESSION['user']['type'] : null;
     }
 
     //Getters and Setters
@@ -192,13 +197,13 @@ class User
     {
         $this->password = sha1($password);
     }
-    public function getMerchant()
+    public function gettype()
     {
-        return $this->merchant;
+        return $this->type;
     }
-    public function setMerchant($merchant)
+    public function settype($type)
     {
-        $this->merchant = $merchant;
+        $this->type = $type;
     }
     public function getPhone()
     {

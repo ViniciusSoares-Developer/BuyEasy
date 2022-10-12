@@ -4,7 +4,7 @@
             <div class="col-12 col-sm-6 col-md-3 my-4">
                 <a href="?page=product&idP=<?= $product['id'] ?>" style="text-decoration: none;">
                     <div class="card w-100 text-center border-primary">
-                        <img class="card-img-top" src="<?= sprintf("%s/%s", constant("URL"), substr($product['image_path'], 3)) ?>" style="height: 20vw; min-height: 100px;" alt="Card image">
+                        <img class="card-img-top" src="<?= sprintf("%s/%s", constant("URL"), $product['image_path']) ?>" style="height: 20vw; min-height: 100px;" alt="Card image">
                         <div class="card-body">
                             <h4 class="card-title"><?= $product['name'] ?></h4>
                             <p class="card-text">R$ <?= $product['price'] ?></p>

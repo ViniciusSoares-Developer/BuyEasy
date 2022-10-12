@@ -1,15 +1,15 @@
 <main class="container">
-    <form class="row p-3 border border-3 border-primary rounded" action="./controller/controllerUser.php" method="post" enctype="multipart/form-data">
+    <form class="row p-3 border border-3 border-primary rounded" method="post" enctype="multipart/form-data">
         <label for="image" class="form-label">Imagem:
             <input class="form-control" type="file" name="image" id="" accept="image/*" required>
         </label>
         <div class="d-flex justify-content-center flex-wrap">
             <button class="col-12 col-md-2 m-2 btn btn-warning" type="reset">Limpar</button>
-            <button class="col-12 col-md-2 m-2 btn btn-success" type="submit" name="submit" value="editImage">Confirmar</button>
+            <button class="col-12 col-md-2 m-2 btn btn-success" type="submit" name="submitU" value="editImage">Confirmar</button>
         </div>
     </form>
     <hr class="border border-2 rounded border-primary">
-    <form class="row p-3 border border-3 border-primary rounded" action="./controller/controllerUser.php" method="post" enctype="multipart/form-data">
+    <form class="row p-3 border border-3 border-primary rounded" method="post" enctype="multipart/form-data">
         <label for="name" class="form-label">
             Nome:
             <input class="form-control" type="text" autocomplete="off" name="name" id="" value="<?= $_SESSION['user']['name'] ?>" required>
@@ -32,11 +32,11 @@
         </label>
         <div class="d-flex justify-content-center flex-wrap">
             <button class="col-12 col-md-2 m-2 btn btn-warning" type="reset">Resetar</button>
-            <button class="col-12 col-md-2 m-2 btn btn-success" type="submit" name="submit" value="editInformation">Confirmar</button>
+            <button class="col-12 col-md-2 m-2 btn btn-success" type="submit" name="submitU" value="editInformation">Confirmar</button>
         </div>
     </form>
     <hr class="border border-2 rounded border-primary">
-    <form class="row p-3 border border-3 border-primary rounded" action="./controller/controllerUser.php" method="post">
+    <form class="row p-3 border border-3 border-primary rounded" method="post">
         <label for="" class="form-label">
             E-mail:
             <input class="form-control" type="email" name="email" placeholder="Email" value="" required>
@@ -51,11 +51,11 @@
         </label>
         <div class="d-flex justify-content-center flex-wrap">
             <button class="col-12 col-md-2 m-2 btn btn-warning" type="reset">Limpar</button>
-            <button class="col-12 col-md-2 m-2 btn btn-success" type="submit" name="submit" value="editEmail">Confirmar</button>
+            <button class="col-12 col-md-2 m-2 btn btn-success" type="submit" name="submitU" value="editEmail">Confirmar</button>
         </div>
     </form>
     <hr class="border border-2 rounded border-primary">
-    <form class="row p-3 border border-3 border-primary rounded" action="" method="post">
+    <form class="row p-3 border border-3 border-primary rounded" method="post">
         <label for="" class="form-label">
             Nova senha:
             <div class="input-group px2">
@@ -75,7 +75,7 @@
         </label>
         <div class="d-flex justify-content-center flex-wrap">
             <button class="col-12 col-md-2 m-2 btn btn-warning" type="reset">Limpar</button>
-            <button class="col-12 col-md-2 m-2 btn btn-success" type="submit" name="submit" value="editEmail">Confirmar</button>
+            <button class="col-12 col-md-2 m-2 btn btn-success" type="submit" name="submitU" value="editEmail">Confirmar</button>
         </div>
     </form>
 </main>

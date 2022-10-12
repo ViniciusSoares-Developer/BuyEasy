@@ -19,7 +19,7 @@
 	</div>
 	<div class="container form-max rounded-4 p-4" style="background-color: white; max-width: 600px;">
 		<a class="position-absolute" href="?page=initial"><button class="btn btn-primary" type="button"><i class="fas fa-angle-left"></i></button></a>
-		<form class="px-5 pt-5" action="./controller/controllerProduct.php" method="POST" enctype="multipart/form-data">
+		<form class="px-5 pt-5" method="POST" enctype="multipart/form-data">
 			<div class="row">
 				<label class="form-label">Image do produto:</label>
 				<input class="col-12 form-control" type="file" name="image" accept="image/jpeg, image/png" required />
@@ -36,7 +36,7 @@
 				<label class="form-label w-100">Descrição:</label>
 				<textarea class="form-control" name="description" rows="5" style="resize: none;"><?= $productListUserID['description']?></textarea>
 			</div>
-			<button class="w-100 mt-2 btn btn-primary" type="submit" name="submit" value="edit">
+			<button class="w-100 mt-2 btn btn-primary" type="submit" name="submitP" value="edit">
 				Editar produto
 			</button>
 		</form>
