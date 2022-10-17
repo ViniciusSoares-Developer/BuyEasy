@@ -10,14 +10,7 @@
             <strong>Sucesso!</strong> Item removido com sucesso
         </div>
     <?php endif; ?>
-    <section class="row justify-content-center pb-4 px-4 mb-5" style="height: 5rem;">
-        <div class="col-md-8 p-0">
-            <input class="h-100 form-control border-primary" type="text" id="search" placeholder="Buscar">
-        </div>
-        <a class="col-md-2 p-0" href="" onclick="this.href='?page=search&search='+document.getElementById('search').value">
-            <button class="btn btn-primary w-100 h-100" type="button"><i class="fa fa-search"></i></button>
-        </a>
-    </section>
+    <?php require_once "view/template/searchBar.php" ?>
     <section class="row justify-content-center text-primary">
         <div class="col-md-6 mb-4">
             <div class="card text-center">
@@ -31,32 +24,32 @@
         </div>
     </section>
     <section class="row bg-primary rounded px-2">
-        <?php if ($productListUser) : ?>
+        <?php if (!empty($productListUser)) : ?>
             <?php foreach ($productListUser as $product) : ?>
                 <div class="col-6 col-sm-2 my-4">
                     <a href="?page=edit_product&idP=<?= $product['id'] ?>">
-                        <button class="float-start btn btn-primary"><i class="fas fa-edit"></i></button>
+                        <button class="float-start btn btn-primary w-100"><i class="fas fa-edit"></i></button>
                     </a>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal<?= $product['id'] ?>" class="float-end btn btn-primary"><i class="fas fa-trash"></i></button>
+                    <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#modal<?= $product['id'] ?>" class="float-end btn btn-primary"><i class="fas fa-trash"></i></button> -->
                     <!-- modal -->
-                    <div class="modal fade" id="modal<?= $product['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- <div class="modal fade" id="modal<?= $product['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <a href="?page=remove&idP=<?= $product['id'] ?>">
-                                        <button type="button" name="submit" value="remove" class="btn btn-danger">Confirmar</button>
-                                    </a>
-                                </div>
-                                <div class="modal-footer">
+                                    <form method="post">
+                                        <input type="hidden" name="idP" value="<?= $product['id'] ?>">
+                                        <button type="submit" name="submitP" value="remove" class="btn btn-danger w-100">Confirmar</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary w-100 mt-3" data-bs-dismiss="modal">Cancelar</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- item -->
-                    <a href="?page=product&idP=<?= $product['id'] ?>" style="text-decoration: none;">
+                    <a href="?page=product&idP=<?= $product['id'] ?>&idU=<?= $product['id_merchant'] ?>" style="text-decoration: none;">
                         <div class="card w-100 text-center border-0">
                             <img class="card-img-top" src="<?= sprintf("%s/%s", constant("URL"), $product['image_path']) ?>" style="height: 20vw; max-height: 250px; min-height: 100px;" alt="Card image">
                             <div class="card-body">

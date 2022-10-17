@@ -1,6 +1,6 @@
 <footer class="container-fluid bg-primary p-5 mt-2">
     <section class="row justify-content-center mb-1">
-        <button type="button" class="btn btn-outline-light col-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-outline-light col-4 col-sm-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fas fa-comment-alt"></i>
         </button>
     </section>

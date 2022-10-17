@@ -13,14 +13,14 @@ class Product {
         $this->setDescription($description);
     }
 
-    public function getProducts($id) {
-        $sql = "SELECT * FROM `products` WHERE `id` <> $id ORDER BY  `id` DESC LIMIT 4";
+    public function getProductsWithLimit($id) {
+        $sql = "SELECT * FROM `products` WHERE `id` = $id ORDER BY  `id` DESC LIMIT 4";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function getProductsByUserLimit($idP, $idU) {
+    public function getProductsByUserWithLimit($idP, $idU) {
         $sql = "SELECT * FROM `products` WHERE `id` <> $idP AND `id_merchant` = $idU ORDER BY `id` DESC LIMIT 4";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
@@ -39,6 +39,13 @@ class Product {
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+    public function getProducts() {
+        $sql = "SELECT * FROM `products` ORDER BY `id` DESC LIMIT 4";
+        $db = Database::connection();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getProduct($idP) {
@@ -52,7 +59,7 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
     public function getProductsByName($name) {
-        $sql = "SELECT * FROM `products` WHERE `name` LIKE '$name%' AND `id` BETWEEN 1 AND 10";
+        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$name%' AND `id` BETWEEN 1 AND 10";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
@@ -82,16 +89,16 @@ class Product {
     }
     public function edit($id) {
         $sql = "UPDATE `products` SET
-        `img_path` = :img,
+        `image_path` = :img,
         `name` = :n,
         `price` = :p,
         `description` = :d
-        WHERE `id` = $id and `id_merchant` = $_SESSION[user][id]";
+        WHERE `id` = $id and `id_merchant` = :id";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
 
         $img = $this->getImage();
-        $folder = "../archives/products/";
+        $folder = "archives/products/";
         $nameArchive = uniqid();
         $extension = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
         if ($extension != "jpg" && $extension != "png") return false;
@@ -108,9 +115,11 @@ class Product {
     }
     public function remove($id) {
         $sql = "DELETE FROM `products`
-        WHERE `id` = $id and `id_merchant` = ".$_SESSION['user']['id'];
+        WHERE `products`.`id` = :id and `products`.`id_merchant` = :idU";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
+        $stmt->bindValue(":id", $id);
+        $stmt->bindValue(":idU", $_SESSION['user']['id']);
         return $stmt->execute();
     }
 

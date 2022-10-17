@@ -41,18 +41,9 @@
             </button>
         </div>
     </section>
-    <section class="row pb-4 px-4" style="height: 5rem;">
-        <div class="d-flex justify-content-center">
-            <div class="col-sm-8">
-                <input class="h-100 form-control border-primary" type="text" id="search" placeholder="Buscar">
-            </div>
-            <a class="col-sm-2 p-0" href="" onclick="this.href='?page=search&search='+document.getElementById('search').value">
-                <button class="btn btn-primary w-100 h-100" type="button"><i class="fa fa-search"></i></button>
-            </a>
-        </div>
-    </section>
+    <?php require_once "view/template/searchBar.php"?>
     <section class="row bg-primary rounded px-2 pt-4">
-        <?php require_once "view/template/listProducts.php";?>
+        <?php require_once "view/template/listProducts.php"; ?>
     </section>
     <section class="row">
         <section class="col-md my-4">
@@ -96,13 +87,13 @@
                     </div>
                     <div class="card-body d-flex flex-column align-items-center text-primary">
                         <?php foreach ($recentSeller as $account) : ?>
-                                <div class="card w-50" style="min-width: 200px;">
-                                    <img src="<?= sprintf("%s/%s", constant("URL"), $account['image_path']) ?>" class="card-img-top" alt="" style="height: 15vw; min-height: 200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $account['name']?></h5>
-                                        <a href="?page=user&idU=<?= $account['id'] ?>" class="btn btn-primary">Perfil</a>
-                                    </div>
+                            <div class="card w-50" style="min-width: 200px;">
+                                <img src="<?= sprintf("%s/%s", constant("URL"), $account['image_path']) ?>" class="card-img-top" alt="" style="height: 15vw; min-height: 200px;">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $account['name'] ?></h5>
+                                    <a href="?page=user&idU=<?= $account['id'] ?>" class="btn btn-primary">Perfil</a>
                                 </div>
+                            </div>
                         <?php endforeach; ?>
                     </div>
                 </div>

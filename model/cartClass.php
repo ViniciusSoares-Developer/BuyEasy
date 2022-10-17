@@ -11,14 +11,32 @@ class Cart
         }
     }
 
-    public function confirmBuy()
+    public function getBuys() {
+        if (isset($_SESSION['user'])) {
+            $sql = "SELECT * FROM cart INNER JOIN cart_product ON cart.id = cart_product.id_cart WHERE cart.id_user = :user";
+            $db = Database::connection();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(":user", $_SESSION['user']['id']);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+    public function confirmBuy($discount)
     {
         if (isset($_SESSION['user'])) {
             if (!empty($this->getList())) {
-                $sql = "INSERT INTO `cart`(`id_user`) VALUES (:id_user)";
+                $sql = "INSERT INTO `cart`(`id_user`, `pdf_path`, `total_price`, `discount`, `date_increment`) VALUES (:id_user, null, :tp, $discount, NOW())";
                 $db = Database::connection();
                 $stmt = $db->prepare($sql);
+                
+                $total_price = 0;
+                foreach ($this->getList() as $item)
+                {
+                    $total_price += $item['price'] * $item['quant'];
+                }
+                
                 $stmt->bindValue(':id_user', $_SESSION['user']['id']);
+                $stmt->bindValue(':tp', $total_price);
                 $stmt->execute();
                 
                 $sql = "SELECT MAX(id) FROM `cart`";

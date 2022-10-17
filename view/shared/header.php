@@ -1,6 +1,5 @@
 <header class="container-fluid sticky-top bg-primary bg-gradient top-0 mb-4">
     <section class="row">
-
         <section class="col-sm-3 my-2">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#cart">
@@ -40,6 +39,9 @@
                             <?php endif; ?>
                             <li>
                                 <a class="dropdown-item" href="?page=edit_user"><i class="fas fa-cog"></i> Editar Perfil</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="?page=list_buy"><i class="fas fa-shopping-cart"></i> Compras Realizadas</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="?logout=true">
@@ -85,15 +87,24 @@
         <?php endif; ?>
     </div>
     <div class="offcanvas-footer">
+        <p class="fs-4 p-0 m-0">Total: R$<?php
+        $total = 0;
+        if (isset($_SESSION['cart']))
+        foreach($_SESSION['cart'] as $index => $item){
+            $total += $item['price'] * $item['quant'];
+            if ($index == count($_SESSION['cart'])-1) {
+                echo $total;
+            }
+        }?></p>
         <?php if (isset($_SESSION['user'])) : ?>
             <form method="POST">
-                <select class="form-select" name="" id="">
+                <select class="form-select" name="discount" id="">
                     <option value="" selected>Selecione um cupom</option>
-                    <?php if (!empty($cupons)) { foreach($cupons as $cupom) :?>
-                        <option value="<?= $cupom['id']?>"><?= $cupom['name']?></option>
-                    <?php endforeach; }?>
+                    <option value="10" <?php if($total<100)echo "disabled"?>>Desconto de 10% para valores acima de R$100</option>
+                    <option value="25" <?php if($total<200)echo "disabled"?>>Desconto de 25% para valores acima de R$200</option>
+                    <option value="40" <?php if($total<500)echo "disabled"?>>Desconto de 40% para valores acima de R$500</option>
                 </select>
-                <button type="submit" name="cart" value="confirm" class="btn btn-success w-100">Finalizar compra</button>
+                <button type="submit" name="cart" value="confirm" class="btn btn-success w-100" <?php if(empty($_SESSION['cart']))echo"disabled"?>>Finalizar compra</button>
             </form>
         <?php else : ?>
             <a href="?page=login&alert=cart">

@@ -39,6 +39,10 @@ switch (true) {
         include_once "./view/forms/edit_product.php";
         break;
 
+    case $page === 'list_buy':
+        include_once "./view/user/buy_list.php";
+        break;
+
     default:
         echo "error Not found";
         echo "<br><a href=\"?page=initial\">voltar</a>";

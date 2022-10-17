@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Out-2022 às 04:15
+-- Tempo de geração: 18-Out-2022 às 01:00
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `buyeasy_db`
 --
-CREATE DATABASE IF NOT EXISTS `buyeasy_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `buyeasy_db`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +29,11 @@ USE `buyeasy_db`;
 
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `id_user` int(11) NOT NULL,
+  `discount` int(11) DEFAULT NULL,
+  `total_price` decimal(10,2) DEFAULT NULL,
+  `pdf_path` varchar(255) DEFAULT NULL,
+  `date_increment` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -72,6 +74,7 @@ CREATE TABLE `products` (
   `name` varchar(255) DEFAULT NULL,
   `price` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
+  `active` tinyint(1) NOT NULL,
   `id_merchant` int(11) NOT NULL,
   `date_increament` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -92,7 +95,7 @@ CREATE TABLE `users` (
   `facebook` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(40) DEFAULT NULL,
-  `merchant` tinyint(1) NOT NULL DEFAULT 0,
+  `type` tinyint(4) NOT NULL DEFAULT 1,
   `data_increament` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

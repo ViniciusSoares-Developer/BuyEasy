@@ -81,7 +81,7 @@
         <h4 class="text-white">Mais produtos da loja</h4>
         <?php foreach($productListOfUser as $product) : ?>
                 <div class="col-6 col-sm-3 mb-4">
-                    <a href="?page=product&idP=<?= $product['id'] ?>" style="text-decoration: none;">
+                    <a href="?page=product&idP=<?= $product['id'] ?>&idU=<?= $product['id_merchant']?>" style="text-decoration: none;">
                         <div class="card w-100 text-center border-0">
                             <img class="card-img-top" src="<?= sprintf("%s/%s", constant("URL"), $product['image_path']) ?>" style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
                             <div class="card-body">

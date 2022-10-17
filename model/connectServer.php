@@ -45,9 +45,11 @@ class Database
         catch (PDOException $e)
         {
             # Envia um e-mail para o e-mail oficial do sistema, em caso de erro de conexão.
-            mail($sistema_email, "PDOException em $sistema_titulo", $e->getMessage());
+            // mail($sistema_email, "PDOException em $sistema_titulo", $e->getMessage());
             # Então não carrega nada mais da página.
-            die("Connection Error: " . $e->getMessage());
+            include_once ""; //incluir uma pagina que fala que deu erro no site
+            die(); // parar a execução
+            // die("Connection Error: " . $e->getMessage());
         }
     }
 
