@@ -1,5 +1,5 @@
 <header class="container-fluid sticky-top bg-primary bg-gradient top-0 mb-4">
-    <section class="row">
+    <section class="row justify-content-center">
         <section class="col-sm-3 my-2">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#cart">
@@ -7,10 +7,10 @@
                 </button>
             </div>
         </section>
-        <section class="col-sm-6 my-2">
+        <section class="col-6 col-sm-6 my-2">
             <div class="row justify-content-center m-0">
-                <a href="?page=initial" class="col-12 col-sm-6 p-0">
-                    <img src="" alt="" class="w-100" height="100">
+                <a href="?page=initial" class="col-12 col-sm-4 p-0 py-2 d-flex justify-content-center">
+                    <img src="assets/images/logoHeader.png" alt="" class="w-100 logo" style="min-width: 200px; filter: drop-shadow(0 0 .2rem white);">
                 </a>
             </div>
         </section>
@@ -25,7 +25,7 @@
         <?php else : ?>
             <section class="col-sm-3 my-2">
                 <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                    <a href="?page=user&idU=<?= $_SESSION['user']['id'] ?>" class="me-2"><img src="<?= sprintf("%s/%s", constant("URL"), $_SESSION['user']['image_path']) ?>" class="rounded-circle border border-primary" alt="" width="40" height="40" /></a>
+                    <a href="?page=user&idU=<?= $_SESSION['user']['id'] ?>" class="me-2"><img src="<?= sprintf("%s/%s", constant("URL"), $_SESSION['user']['image_path']) ?>" class="rounded-circle img1:1 border border-primary" alt="" width="40" height="40" /></a>
                     <div class="dropdown">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fas fa-list"></i>

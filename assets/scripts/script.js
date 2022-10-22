@@ -10,3 +10,19 @@ function toogleVisibility(id_input, id_button) {
 			  icon.classList.add("fa-eye"),
 			  "password");
 }
+
+document.body.onresize = () => {
+	var imgs = document.getElementsByClassName("img1:1");
+	for (let index = 0; index < imgs.length; index++) {
+		const element = imgs[index];
+		element.style.height = element.offsetWidth + "px";
+	}
+}
+
+document.body.onload = () => {
+	var imgs = document.getElementsByClassName("img1:1");
+	for (let index = 0; index < imgs.length; index++) {
+		const element = imgs[index];
+		element.style.height = element.offsetWidth + "px";
+	}
+}

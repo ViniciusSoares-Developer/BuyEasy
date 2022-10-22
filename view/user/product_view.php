@@ -1,7 +1,7 @@
 <main class="container mt-4">
     <section class="row text-primary">
         <div class="col-md-5">
-            <img class="img-fluid h-100 border border-5 border-primary rounded" src="<?= sprintf("%s/%s", constant("URL"), $product['image_path']) ?>" alt="">
+            <img class="img-fluid img1:1 h-100 border border-5 border-primary rounded" src="<?= sprintf("%s/%s", constant("URL"), $product['image_path']) ?>" alt="">
         </div>
         <div class="col-md-7 text-center px-5">
             <h1><?= $product['name'] ?></h1>
@@ -27,7 +27,7 @@
     <section class="row my-4 justify-content-center">
         <div class="col-3">
             <a class="text-decoration-none text-center d-block" href="?page=user&idU=<?= $product['id_user'] ?>">
-                <img class="img-fluid" style="height: 18vw;" src="<?= sprintf("%s/%s", constant("URL"), $product['image_user']) ?>" alt="">
+                <img class="img-fluid img1:1" src="<?= sprintf("%s/%s", constant("URL"), $product['image_user']) ?>" alt="">
                 <h1><?= $product['name_user'] ?></h1>
             </a>
         </div>

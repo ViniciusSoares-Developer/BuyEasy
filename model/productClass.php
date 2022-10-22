@@ -28,9 +28,10 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getProductsByUser($idU) {
-        $sql = "SELECT * FROM `products` WHERE `id_merchant` = $idU";
+        $sql = "SELECT * FROM `products` WHERE `id_merchant` = :id";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
+        $stmt->bindValue(":id", $idU);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -59,7 +60,7 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
     public function getProductsByName($name) {
-        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$name%' AND `id` BETWEEN 1 AND 10";
+        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$name%' AND `id`";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();

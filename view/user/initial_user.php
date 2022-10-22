@@ -41,7 +41,7 @@
             </button>
         </div>
     </section>
-    <?php require_once "view/template/searchBar.php"?>
+    <?php require_once "view/template/searchBar.php" ?>
     <section class="row bg-primary rounded px-2 pt-4">
         <?php require_once "view/template/listProducts.php"; ?>
     </section>
@@ -88,7 +88,7 @@
                     <div class="card-body d-flex flex-column align-items-center text-primary">
                         <?php foreach ($recentSeller as $account) : ?>
                             <div class="card w-50" style="min-width: 200px;">
-                                <img src="<?= sprintf("%s/%s", constant("URL"), $account['image_path']) ?>" class="card-img-top" alt="" style="height: 15vw; min-height: 200px;">
+                                <img src="<?= sprintf("%s/%s", constant("URL"), $account['image_path']) ?>" class="card-img-top img1:1" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $account['name'] ?></h5>
                                     <a href="?page=user&idU=<?= $account['id'] ?>" class="btn btn-primary">Perfil</a>

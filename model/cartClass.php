@@ -13,7 +13,7 @@ class Cart
 
     public function getBuys() {
         if (isset($_SESSION['user'])) {
-            $sql = "SELECT * FROM cart INNER JOIN cart_product ON cart.id = cart_product.id_cart WHERE cart.id_user = :user";
+            $sql = "SELECT DISTINCT id, id_user, discount, total_price, pdf_path, date_increment FROM cart INNER JOIN cart_product ON cart.id = cart_product.id_cart WHERE cart.id_user = :user ORDER BY `id` DESC";
             $db = Database::connection();
             $stmt = $db->prepare($sql);
             $stmt->bindValue(":user", $_SESSION['user']['id']);
@@ -25,7 +25,7 @@ class Cart
     {
         if (isset($_SESSION['user'])) {
             if (!empty($this->getList())) {
-                $sql = "INSERT INTO `cart`(`id_user`, `pdf_path`, `total_price`, `discount`, `date_increment`) VALUES (:id_user, null, :tp, $discount, NOW())";
+                $sql = "INSERT INTO `cart`(`id_user`, `pdf_path`, `total_price`, `discount`, `date_increment`) VALUES (:id_user, null, :tp, :d, NOW())";
                 $db = Database::connection();
                 $stmt = $db->prepare($sql);
                 
@@ -37,6 +37,7 @@ class Cart
                 
                 $stmt->bindValue(':id_user', $_SESSION['user']['id']);
                 $stmt->bindValue(':tp', $total_price);
+                $stmt->bindValue(':d', $discount);
                 $stmt->execute();
                 
                 $sql = "SELECT MAX(id) FROM `cart`";
@@ -51,7 +52,6 @@ class Cart
                     $stmt = $db->prepare($sql);
                     $stmt->bindValue(':idp', $item['id']);
                     $stmt->bindValue(':pq', $item['quant']);
-                    // var_dump($stmt);die;
                     $stmt->execute();
                 }
                 $this->clearList();

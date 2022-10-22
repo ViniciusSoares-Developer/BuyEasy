@@ -3,8 +3,6 @@
 @include_once '../model/connectServer.php';
 @include_once '../model/userClass.php';
 
-@define("URL", "http://localhost/buyEasy");
-
 //type of input data
 $submit = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['submitU'])) ? $_POST['submitU'] : null;
 
@@ -21,7 +19,7 @@ $logout = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['logout'])) ? $_G
 if ($_SESSION && $logout == true) {
     unset($_SESSION['user']);
     session_destroy();
-    header(sprintf('Location: %s/?page=initial', constant("URL")));
+    header(sprintf('Location: ?page=initial'));
 }
 
 $user = new User(
@@ -41,15 +39,15 @@ switch ($submit){
         if ($email === $confirm_email) {
             if ($password === $confirm_password) {
                 if ($user->register()) {
-                    header(sprintf('Location: %s/?page=login&alert=sucessR', constant("URL")));
+                    header(sprintf('Location: ?page=login&alert=sucessR'));
                 } else {
-                    header(sprintf('Location: %s/?page=register&alert=error', constant("URL")));
+                    header(sprintf('Location: ?page=register&alert=error'));
                 }
             } else {
-                header(sprintf('Location: %s/?page=register&alert=errorPass', constant("URL")));
+                header(sprintf('Location: ?page=register&alert=errorPass'));
             }
         } else {
-            header(sprintf('Location: %s/?page=register&alert=errorEmail', constant("URL")));
+            header(sprintf('Location: ?page=register&alert=errorEmail'));
         }
         break;
 
@@ -63,46 +61,46 @@ switch ($submit){
             else {
                 setcookie("buyeasy_user_name", "", time(), "/");
             }
-            header(sprintf('Location: %s/?page=initial', constant("URL")));
+            header(sprintf('Location: ?page=initial'));
         }
-        else header(sprintf('Location: %s/?page=login&alert=error', constant("URL")));
+        else header(sprintf('Location: ?page=login&alert=error'));
         break;
     case 'editInformation':
         if ($user->editInfo()){
             $_SESSION['user'] = $user->getUserById($_SESSION['user']['id']);
-            header(sprintf('Location: %s/?page=initial', constant("URL")));
+            header(sprintf('Location: ?page=initial'));
         }
-        else header(sprintf('Location: %s/?page=edit&id=%s&alert=errInfo', constant("URL"), $_SESSION['user']['id']));
+        else header(sprintf('Location: ?page=edit_user&alert=errInfo', $_SESSION['user']['id']));
         break;
 
     case 'editImage':
         if ($user->editImage()) {
             $_SESSION['user'] = $user->getUserById($_SESSION['user']['id']); 
-            header(sprintf('Location: %s/?page=initial', constant("URL")));
+            header(sprintf('Location: ?page=initial'));
         }
-        else header(sprintf('Location: %s/?page=edit&id=%s&alert=errInfo', constant("URL"), $_SESSION['user']['id']));
+        else header(sprintf('Location: ?page=edit_user&alert=errInfo', $_SESSION['user']['id']));
         break;
 
     case 'editEmail':
         if ($email === $confirm_email) {
             if ($user->verifyAcess($passwordVerify)) {
-                if ($user->editEmail()) header(sprintf('Location: %s/?page=initial', constant("URL")));
-                else header(sprintf('Location: %s/?page=edit&id=%s&alert=erre', constant("URL"), $_SESSION['user']['id']));
+                if ($user->editEmail()) header(sprintf('Location: ?page=initial'));
+                else header(sprintf('Location: ?page=edit_user&alert=erre', $_SESSION['user']['id']));
             }
-            else header(sprintf('Location: %s/?page=edit&id=%s&alert=errp', constant("URL"), $_SESSION['user']['id']));
+            else header(sprintf('Location: ?page=edit_user&alert=errp', $_SESSION['user']['id']));
         }
-        else header(sprintf('Location: %s/?page=edit&id=%s&alert=errc', constant("URL"), $_SESSION['user']['id']));
+        else header(sprintf('Location: ?page=edit_user&alert=errc', $_SESSION['user']['id']));
         break;
 
     case 'editPassword':
         if ($password === $confirm_password) {
             if ($user->verifyAcess($passwordVerify)) {
-                if ($user->editPassword()) header(sprintf('Location: %s/?page=initial', constant("URL")));
-                else header(sprintf('Location: %s/?page=edit&id=%s&alert=erre', constant("URL"), $_SESSION['user']['id']));
+                if ($user->editPassword()) header(sprintf('Location: ?page=initial'));
+                else header(sprintf('Location: ?page=edit_user&alert=erre', $_SESSION['user']['id']));
             }
-            else header(sprintf('Location: %s/?page=edit&id=%s&alert=errp', constant("URL"), $_SESSION['user']['id']));
+            else header(sprintf('Location: ?page=edit_user&alert=errp', $_SESSION['user']['id']));
         }
-        else header(sprintf('Location: %s/?page=edit&id=%s&alert=errc', constant("URL"), $_SESSION['user']['id']));
+        else header(sprintf('Location: ?page=edit_user&alert=errc', $_SESSION['user']['id']));
         break;
 
     default :

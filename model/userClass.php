@@ -135,10 +135,10 @@ class User
     public function editPassword()
     {
         if ($_SESSION && isset($_SESSION['user']['id'])) {
-            $sql = "UPDATE `users` SET `password` = :p, `email` = :e WHERE `id` = :id";
+            $sql = "UPDATE `users` SET `password` = :p WHERE `id` = :id";
             $db = Database::connection();
             $stmt = $db->prepare($sql);
-            $stmt->bindValue(':e', $this->getPassword());
+            $stmt->bindValue(':p', $this->getPassword());
             $stmt->bindValue(':id', $_SESSION['user']['id']);
             return $stmt->execute();
         }
@@ -147,7 +147,7 @@ class User
     public function verifyAcess($passwordV)
     {
         if ($_SESSION) {
-            $password = $this->searchUserByEmail($_SESSION['user']['email']);
+            $password = $this->searchUserByEmail($_SESSION['user']['email'])[0]["password"];
             return ($password != null && $password === sha1($passwordV));
         }
     }

@@ -67,7 +67,11 @@ switch ($submit) {
                 $productList = $product->getProductsByName($_GET['s']);
                 break;
             }
-            if (isset($idU) || (isset($_SESSION['user']))) $productListUser = isset($idU) ? $product->getProductsByUser($idU) : $product->getProductsByUser($_SESSION['user']['id']);
-            $productList = $product->getProducts($idP);
+            if ($idU || (isset($_SESSION['user']) && $_SESSION['user']['type'] == '2')) {
+                $productList = isset($idU) ? $product->getProductsByUser($idU) : $product->getProductsByUser($_SESSION['user']['id']);
+            }
+            else {
+                $productList = $product->getProducts($idP);
+            }
         }
 }
