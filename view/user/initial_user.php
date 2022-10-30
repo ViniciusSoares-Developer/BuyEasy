@@ -4,39 +4,29 @@
         <div id="demo" class="carousel slide col p-0" data-bs-ride="carousel">
             <!-- Indicators/dots -->
             <div class="carousel-indicators">
-                <?php for ($i = 0; $i < 4; $i++) : ?>
-                    <?php if ($i == 0) : ?>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                    <?php else : ?>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="<?= $i ?>"></button>
-                    <?php endif; ?>
-                <?php endfor; ?>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
             </div>
 
             <!-- The slideshow/carousel -->
             <div class="carousel-inner">
-                <?php for ($i = 0; $i < 4; $i++) : ?>
-                    <?php if ($i == 0) : ?>
-                        <div class="carousel-item active">
-                            <a href="">
-                                <img src="https://via.placeholder.com/500x300" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
-                            </a>
-                        </div>
-                    <?php else : ?>
-                        <div class="carousel-item">
-                            <a href="">
-                                <img src="https://via.placeholder.com/500x300" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
-                            </a>
-                        </div>
-                    <?php endif; ?>
-                <?php endfor ?>
+                <div class="carousel-item active">
+                    <a href="?page=register">
+                        <img src="assets/images/slider01.png" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="?page=login">
+                        <img src="assets/images/slider02.png" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
+                    </a>
+                </div>
             </div>
 
             <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev" style="width: 10%;">
                 <span class="carousel-control-prev-icon"></span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next" style="width: 10%;">
                 <span class="carousel-control-next-icon"></span>
             </button>
         </div>
@@ -101,37 +91,3 @@
         </section>
     </section>
 </main>
-<!-- <div class="modal fade" id="commenters" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-primary" id="staticBackdropLabel">Comentarios</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <?php if ($feedback) : ?>
-                    <?php foreach ($feedback as $commenter) : ?>
-                        <div class="col-12 my-3">
-                            <div class="card">
-                                <div class="card-header bg-primary text-white">
-                                    <h4 class="float-start"><?= $commenter['name'] ?></h4>
-                                    <div class="float-end">
-                                        <?php for ($i = 0; $i < $commenter['star']; $i++) : ?>
-                                            <i class="fas fa-star text-white"></i>
-                                        <?php endfor; ?>
-                                    </div>
-                                </div>
-                                <div class="card-body text-primary">
-                                    <p><?= $commenter['commenter'] ?></p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div> -->

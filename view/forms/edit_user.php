@@ -1,4 +1,27 @@
 <main class="container">
+    <div class="position-sticky sticky-top w-100 d-flex justify-content-center">
+		<?php if ($alert === 'errorEdit') : ?>
+			<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error!</strong> Ocorreu um erro na edição do perfil, <strong>tente novamente!</strong>
+            </div>
+		<?php elseif ($alert === 'errorAcess') : ?>
+			<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error!</strong> Senha de confirmação de usuário inválida
+            </div>
+		<?php elseif ($alert === 'errorPass') : ?>
+			<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error!</strong> Senhas diferentes
+            </div>
+		<?php elseif ($alert === 'errorEmail') : ?>
+			<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error!</strong> E-mail diferente ou inutilizaveis
+            </div>
+		<?php endif; ?>
+	</div>
     <?php if(isset($_SESSION['user']) && $_SESSION['user']['type'] == '2'):?>
         <form class="row p-3 border border-3 border-primary rounded" method="post" enctype="multipart/form-data">
             <label for="image" class="form-label">Imagem:

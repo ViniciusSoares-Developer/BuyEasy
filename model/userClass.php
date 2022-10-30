@@ -93,7 +93,7 @@ class User
 
         if ($_SESSION && isset($_SESSION['user']['id'])) {
         $img = $this->getImage();
-        $folder = "../archives/users/";
+        $folder = "archives/users/";
         $nameArchive = uniqid();
         $extension = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
         if ($extension != "jpg" && $extension != "png") return false;
@@ -124,7 +124,7 @@ class User
     public function editEmail()
     {
         if ($_SESSION && isset($_SESSION['user']['id'])) {
-            $sql = "UPDATE `users` SET `password` = :p, `email` = :e WHERE `id` = :id";
+            $sql = "UPDATE `users` SET `email` = :e WHERE `id` = :id";
             $db = Database::connection();
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':e', $this->getEmail());

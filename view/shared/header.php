@@ -36,6 +36,10 @@
                                     <a class="dropdown-item" href="?page=add_product">
                                         <i class="fas fa-cart-plus"></i> Adicionar Produto</a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="?page=learning">
+                                        <i class="fas fa-book"></i> Aprenda</a>
+                                </li>
                             <?php endif; ?>
                             <li>
                                 <a class="dropdown-item" href="?page=edit_user"><i class="fas fa-cog"></i> Editar Perfil</a>

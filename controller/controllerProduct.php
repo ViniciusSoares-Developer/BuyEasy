@@ -23,7 +23,7 @@ switch ($submit) {
             header(sprintf('Location: %s/?page=initial', constant("URL")));
             die;
         } else {
-            header(sprintf('Location: %s/?page=add_product&alert=err', constant("URL")));
+            header(sprintf('Location: %s/?page=add_product&alert=error', constant("URL")));
             die;
         }
         break;

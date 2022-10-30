@@ -76,7 +76,8 @@ class Product {
         $folder = "archives/products/";
         $nameArchive = uniqid();
         $extension = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
-        if ($extension != "jpg" && $extension != "png") return false;
+        if ($extension != "jpg" && $extension != "png" && $extension != "jpge") return false;
+        if ($img["size"] > 256000) return false;
         $path = $folder . $nameArchive . "." . $extension;
 
         if (move_uploaded_file($img["tmp_name"], $path)) {

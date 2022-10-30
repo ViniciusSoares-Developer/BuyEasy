@@ -68,39 +68,39 @@ switch ($submit){
     case 'editInformation':
         if ($user->editInfo()){
             $_SESSION['user'] = $user->getUserById($_SESSION['user']['id']);
-            header(sprintf('Location: ?page=initial'));
+            header(sprintf('Location: ?page=initial&alert=successEdit'));
         }
-        else header(sprintf('Location: ?page=edit_user&alert=errInfo', $_SESSION['user']['id']));
+        else header(sprintf('Location: ?page=edit_user&alert=errorEdit', $_SESSION['user']['id']));
         break;
 
     case 'editImage':
         if ($user->editImage()) {
             $_SESSION['user'] = $user->getUserById($_SESSION['user']['id']); 
-            header(sprintf('Location: ?page=initial'));
+            header(sprintf('Location: ?page=initial&alert=successEdit'));
         }
-        else header(sprintf('Location: ?page=edit_user&alert=errInfo', $_SESSION['user']['id']));
+        else header(sprintf('Location: ?page=edit_user&alert=errorEdit', $_SESSION['user']['id']));
         break;
 
     case 'editEmail':
         if ($email === $confirm_email) {
             if ($user->verifyAcess($passwordVerify)) {
-                if ($user->editEmail()) header(sprintf('Location: ?page=initial'));
-                else header(sprintf('Location: ?page=edit_user&alert=erre', $_SESSION['user']['id']));
+                if ($user->editEmail()) header(sprintf('Location: ?page=initial&alert=successEdit'));
+                else header(sprintf('Location: ?page=edit_user&alert=errorEdit', $_SESSION['user']['id']));
             }
-            else header(sprintf('Location: ?page=edit_user&alert=errp', $_SESSION['user']['id']));
+            else header(sprintf('Location: ?page=edit_user&alert=errorAcess', $_SESSION['user']['id']));
         }
-        else header(sprintf('Location: ?page=edit_user&alert=errc', $_SESSION['user']['id']));
+        else header(sprintf('Location: ?page=edit_user&alert=errorEmail', $_SESSION['user']['id']));
         break;
 
     case 'editPassword':
         if ($password === $confirm_password) {
             if ($user->verifyAcess($passwordVerify)) {
-                if ($user->editPassword()) header(sprintf('Location: ?page=initial'));
-                else header(sprintf('Location: ?page=edit_user&alert=erre', $_SESSION['user']['id']));
+                if ($user->editPassword()) header(sprintf('Location: ?page=initial&alert=successEdit'));
+                else header(sprintf('Location: ?page=edit_user&alert=errorEdit', $_SESSION['user']['id']));
             }
-            else header(sprintf('Location: ?page=edit_user&alert=errp', $_SESSION['user']['id']));
+            else header(sprintf('Location: ?page=edit_user&alert=errorAcess', $_SESSION['user']['id']));
         }
-        else header(sprintf('Location: ?page=edit_user&alert=errc', $_SESSION['user']['id']));
+        else header(sprintf('Location: ?page=edit_user&alert=errorPass', $_SESSION['user']['id']));
         break;
 
     default :

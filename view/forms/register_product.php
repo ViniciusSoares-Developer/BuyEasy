@@ -3,17 +3,7 @@
 		<?php if ($alert === 'error') : ?>
 			<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Error!</strong> Dados invalidos ou conta existente
-            </div>
-		<?php elseif ($alert === 'errorPass') : ?>
-			<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Error!</strong> Senhas diferentes
-            </div>
-		<?php elseif ($alert === 'errorEmail') : ?>
-			<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Error!</strong> E-mail diferente ou inutilizaveis
+                <strong>Error!</strong> Não foi possivel adicionar o produto
             </div>
 		<?php endif; ?>
 	</div>
@@ -21,8 +11,8 @@
 		<a class="position-absolute" href="?page=initial"><button class="btn btn-primary" type="button"><i class="fas fa-angle-left"></i></button></a>
 		<form class="px-5 pt-5" method="POST" enctype="multipart/form-data">
 			<div class="row">
-				<label class="form-label">Image do produto:</label>
-				<input class="col-12 form-control"type="file" name="image" accept="image/*" required />
+				<label class="form-label">Image do produto: <strong>Max: 250kb</strong></label>
+				<input class="col-12 form-control" type="file" name="image" accept="image/*,.jpg,.png,.jpge" required />
 			</div>
 			<div class="row mt-2">
 				<label class="form-label">Nome:</label>

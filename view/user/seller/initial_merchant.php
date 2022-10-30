@@ -18,7 +18,7 @@
                     <h1>Produtos adicionados</h1>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title"><?= !empty($productListUser) ? sizeof($productListUser) : 0 ?></h3>
+                    <h3 class="card-title"><?= !empty($productList) ? sizeof($productList) : 0 ?></h3>
                 </div>
             </div>
         </div>

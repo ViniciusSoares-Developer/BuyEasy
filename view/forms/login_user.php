@@ -27,7 +27,7 @@
             <div class="row mt-2">
                 <label class="form-label w-100">Senha:</label>
                 <div class="col-sm-10 p-0">
-                    <input class="form-control" type="password" name="password" id="password" required />
+                    <input class="form-control" placeholder="Senha" type="password" name="password" id="password" required />
                 </div>
                 <div class="col-sm-2 p-0">
                     <button class="btn btn-primary w-100" type="button" onclick="toogleVisibility(password, this)" class="col-1"><i class="fa fa-eye"></i></button>
