@@ -61,6 +61,7 @@ switch ($submit) {
         } else if ($idP && $idU) {
             $productListOfUser = $product->getProductsByUserWithLimit($idP, $idU);
             $productList = $product->getProductsWithLimit($idP);
+            $productListAll = $product->getProducts();
             $product = $product->getProduct($idP);
         } else {
             if ($page === 'search') {
