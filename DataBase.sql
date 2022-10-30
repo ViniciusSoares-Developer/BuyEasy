@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Out-2022 às 01:00
+-- Tempo de geração: 30-Out-2022 às 12:32
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `buyeasy_db`
 --
+CREATE DATABASE IF NOT EXISTS `buyeasy_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `buyeasy_db`;
 
 -- --------------------------------------------------------
 
@@ -79,6 +81,21 @@ CREATE TABLE `products` (
   `date_increament` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `products`
+--
+
+INSERT INTO `products` (`id`, `image_path`, `name`, `price`, `description`, `active`, `id_merchant`, `date_increament`) VALUES
+(1, 'archives/products/635e522082627.jpg', 'Sanduiche só matinhu', '15', 'Ingredientes: Mato e pão', 0, 2, '2022-10-30'),
+(2, 'archives/products/635e5305db3f3.jpg', 'Hamburguer', '20', 'Ingredientes: Pão e recheio', 0, 2, '2022-10-30'),
+(3, 'archives/products/635e533b1b348.jpg', 'Combo', '32', 'Batata frita, Refrigerante e hamburguer', 0, 2, '2022-10-30'),
+(4, 'archives/products/635e54d2150bd.jpg', 'Meio saco de cimento', '25.5', '25kg de cimento CP-II', 0, 3, '2022-10-30'),
+(5, 'archives/products/635e576257f94.png', 'Tijolo baiano', '0.8', 'Tijolo baiano deitou ficou', 0, 3, '2022-10-30'),
+(6, 'archives/products/635e57b2cd131.jpg', 'Picareta', '150', 'Utilize para minerar diamante', 0, 3, '2022-10-30'),
+(7, 'archives/products/635e5992f2114.jpg', 'Oculos Masculino', '80.00', 'Armação Masculina', 0, 1, '2022-10-30'),
+(8, 'archives/products/635e59b39393c.jpg', 'Óculos Feminino', '100.00', 'Armação de óculos feminino', 0, 1, '2022-10-30'),
+(9, 'archives/products/635e59e1606bb.jpg', 'Óculos de sol unisex', '150.00', 'Óculos de proteção UV para todos os sexos', 0, 1, '2022-10-30');
+
 -- --------------------------------------------------------
 
 --
@@ -87,7 +104,7 @@ CREATE TABLE `products` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `image_path` varchar(255) DEFAULT '../archives/users/img.png',
+  `image_path` varchar(255) DEFAULT 'archives/users/default.png',
   `name` varchar(40) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `whatsapp` varchar(255) DEFAULT NULL,
@@ -98,6 +115,15 @@ CREATE TABLE `users` (
   `type` tinyint(4) NOT NULL DEFAULT 1,
   `data_increament` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`id`, `image_path`, `name`, `phone`, `whatsapp`, `instagram`, `facebook`, `email`, `password`, `type`, `data_increament`) VALUES
+(1, 'archives/users/635e5a032aca3.jpg', 'Flocks Armações', NULL, NULL, NULL, NULL, 'armacoes@hotmail.com', '1ce1896390f2ff86e79d4046314cbabd06ab8cc1', 2, '2022-10-30'),
+(2, 'archives/users/635e4fc9047df.png', 'BB Lanches', '81980007000', '81980007000', NULL, NULL, 'lanches@hotmail.com', 'dd2f42521cf2e6e48394b7b880ea456d608e4c46', 2, '2022-10-30'),
+(3, 'archives/users/635e543f47b5d.png', 'Miguel Construção', NULL, NULL, NULL, NULL, 'armazem@hotmail.com', '265e1ed226e9aa2e30bb8ba4d9d10392b0d2cf6a', 2, '2022-10-30');
 
 --
 -- Índices para tabelas despejadas
@@ -159,13 +185,13 @@ ALTER TABLE `commenter`
 -- AUTO_INCREMENT de tabela `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
