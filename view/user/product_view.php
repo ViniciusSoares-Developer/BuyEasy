@@ -1,7 +1,7 @@
 <main class="container mt-4">
     <section class="row text-primary">
         <div class="col-md-5">
-            <img class="img-fluid img1:1 h-100 border border-5 border-primary rounded" src="<?= sprintf("%s/%s", constant("URL"), $product['image_path']) ?>" alt="">
+            <img class="img-fluid img1:1 h-100 border border-5 border-primary rounded" src="<?= $product['image_path'] ?>" alt="">
         </div>
         <div class="col-md-7 text-center px-5">
             <h1><?= $product['name'] ?></h1>
@@ -27,7 +27,7 @@
     <section class="row my-4 justify-content-center">
         <div class="col-3">
             <a class="text-decoration-none text-center d-block" href="?page=user&idU=<?= $product['id_user'] ?>">
-                <img class="img-fluid img1:1" src="<?= sprintf("%s/%s", constant("URL"), $product['image_user']) ?>" alt="">
+                <img class="img-fluid img1:1" src="<?= $product['image_user'] ?>" alt="">
                 <h1><?= $product['name_user'] ?></h1>
             </a>
         </div>
@@ -83,7 +83,7 @@
                 <div class="col-6 col-sm-3 mb-4">
                     <a href="?page=product&idP=<?= $product['id'] ?>&idU=<?= $product['id_merchant']?>" style="text-decoration: none;">
                         <div class="card w-100 text-center border-0">
-                            <img class="card-img-top" src="<?= sprintf("%s/%s", constant("URL"), $product['image_path']) ?>" style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
+                            <img class="card-img-top" src="<?= $product['image_path'] ?>" style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title"><?= $product['name'] ?></h4>
                                 <p class="card-text">R$ <?= $product['price'] ?></p>

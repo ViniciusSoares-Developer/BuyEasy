@@ -195,7 +195,7 @@ class User
     }
     public function setPassword($password)
     {
-        $this->password = sha1($password);
+        $this->password = sha1((string) $password);
     }
     public function gettype()
     {

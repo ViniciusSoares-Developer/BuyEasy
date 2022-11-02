@@ -20,42 +20,42 @@ $product = new Product(
 switch ($submit) {
     case 'add':
         if ($product->add()) {
-            header(sprintf('Location: %s/?page=initial', constant("URL")));
+            header('Location: ?page=initial');
             die;
         } else {
-            header(sprintf('Location: %s/?page=add_product&alert=error', constant("URL")));
+            header('Location: ?page=add_product&alert=error');
             die;
         }
         break;
     case 'edit':
         if ($_GET['idP']) {
             if ($product->edit($_GET['idP'])) {
-                header(sprintf('Location: %s/?page=initial', constant("URL")));
+                header('Location: ?page=initial');
                 die;
             } else {
-                header(sprintf('Location: %s/?page=edit_product&idP=%s&alert=err', constant("URL"), $idP));
+                header(sprintf('Location: ?page=edit_product&idP=%s&alert=err', $idP));
                 die;
             }
         }
         break;
     case 'remove':
         if ($product->remove($id)) {
-            header(sprintf('Location: %s/?page=initial&alert=successRemove', constant("URL")));
+            header('Location: ?page=initial&alert=successRemove');
             die;
         } else {
-            header(sprintf('Location: %s/?page=initial&alert=errRemove', constant("URL"), $idP));
+            header('Location: ?page=initial&alert=errRemove');
             die;
         }
         break;
     case 'search':
-        header(sprintf('Location: %s/?page=search&s=%s', constant("URL"), $search));
+        header(sprintf('Location: ?page=search&s=%s', $search));
         break;
     default:
         if ($page === 'edit_product' && !empty($_SESSION['user']) && $_SESSION['user']['type'] === 2) {
             $userProduct = $product->getProductByIdAndUser($idP, $_SESSION['user']['id']);
 
             if ($userProduct['id_merchant'] != $_SESSION['user']['id']) {
-                header(sprintf('Location: %s/?page=initial', constant("URL")));
+                header('Location: ?page=initial');
             }
             break;
         } else if ($idP && $idU) {

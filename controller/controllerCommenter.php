@@ -9,7 +9,7 @@ $commeter = new Commenter($text, $idP, $starQ);
 
 if ($submitCommenter == 'commenter'){
     $commeter->commenter();
-    header(sprintf('Location: %s/?page=initial', constant("URL")));
+    header('Location: /?page=initial');
 }
 else {
     if ($idP) {

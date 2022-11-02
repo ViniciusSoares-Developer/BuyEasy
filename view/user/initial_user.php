@@ -78,7 +78,7 @@
                     <div class="card-body d-flex flex-column align-items-center text-primary">
                         <?php foreach ($recentSeller as $account) : ?>
                             <div class="card w-50" style="min-width: 200px;">
-                                <img src="<?= sprintf("%s/%s", constant("URL"), $account['image_path']) ?>" class="card-img-top img1:1" alt="">
+                                <img src="<?= $account['image_path'] ?>" class="card-img-top img1:1" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $account['name'] ?></h5>
                                     <a href="?page=user&idU=<?= $account['id'] ?>" class="btn btn-primary">Perfil</a>

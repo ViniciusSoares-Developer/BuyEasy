@@ -1,6 +1,6 @@
 <main class="container">
     <section class="row justify-content-center">
-        <img class="img1:1 p-0 col-6 col-md-3 rounded-circle border border-primary" src="<?= sprintf("%s/%s", constant("URL"), $profile['image_path']) ?>" alt="" />
+        <img class="img1:1 p-0 col-6 col-md-3 rounded-circle border border-primary" src="<?= $profile['image_path'] ?>" alt="" />
     </section>
     <section class="row mt-2 justify-content-center text-center text-white">
         <h1 class="col-md-12 text-break bg-primary p-3 rounded">
