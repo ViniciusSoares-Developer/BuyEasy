@@ -12,12 +12,12 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <a href="?page=register">
-                        <img src="assets/images/slider01.png" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
+                        <img src="assets/images/banner buy easy 2.png" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="?page=login">
-                        <img src="assets/images/slider02.png" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
+                        <img src="assets/images/banner buy easy.png" alt="Los Angeles" class="d-block w-100" style="height: 25vw; min-height: 150px;">
                     </a>
                 </div>
             </div>
