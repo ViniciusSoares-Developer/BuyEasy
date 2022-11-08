@@ -43,7 +43,7 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
     public function getProducts() {
-        $sql = "SELECT * FROM `products` ORDER BY `id` DESC LIMIT 4";
+        $sql = "SELECT * FROM `products` ORDER BY `id` DESC LIMIT 6";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();

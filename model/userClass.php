@@ -45,7 +45,7 @@ class User
         return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
     public function getUsersMerchant(){
-        $sql = "SELECT * FROM `users` WHERE `type` = 2 ORDER BY `id` DESC LIMIT 5;";
+        $sql = "SELECT * FROM `users` WHERE `type` = 2 ORDER BY `id` DESC LIMIT 4;";
         $db = Database::connection();
         $stmt = $db->prepare($sql);
         $stmt->execute();
