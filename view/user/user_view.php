@@ -1,6 +1,5 @@
 <main class="container">
     <section class="row justify-content-center">
-        <?php var_dump($user);?>
         <img class="img1:1 p-0 col-6 col-md-3 rounded-circle border border-primary" src="<?= $user['imgPath'] ?>" alt="" />
     </section>
     <section class="row mt-2 justify-content-center text-center text-white">

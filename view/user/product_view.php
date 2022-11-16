@@ -1,8 +1,8 @@
 <main class="container mt-4">
     <section class="row text-primary">
         <div class="col-md-5">
-            <img class="img-fluid img1:1 h-100 border border-5 border-primary rounded"
-                src="<?= $productList["imgPath"] ?>" alt="">
+            <img class="img-fluid img1:1 h-100 border border-5 border-primary rounded" src="<?= $productList[" imgPath"]
+                ?>" alt="">
         </div>
         <div class="col-md-7 text-center px-5">
             <h1>
@@ -11,7 +11,8 @@
             <p class="text-start px-5" style="height: 20vw;">
                 <?= $productList['description'] ?>
             </p>
-            <h4>R$ <?= $productList['price'] ?>
+            <h4>R$
+                <?= $productList['price'] ?>
             </h4>
             <section class="row my-3 justify-content-center">
                 <div class="col-md-6">
@@ -31,27 +32,25 @@
             </section>
         </div>
     </section>
-    <<<<<<< HEAD <section class="row my-4 justify-content-center">
+    <section class="row my-4 justify-content-center">
         <div class="col-3">
             <a class="text-decoration-none text-center d-block" href="?page=user&idU=<?= $productList['idUser'] ?>">
-                <img class="img-fluid img1:1" src="<?= $productList["imgUser"] ?>" alt="">
+                <img class="img-fluid img1:1" src="<?= $productList[" imgUser"] ?>" alt="">
                 <h1>
                     <?= $productList['nameUser'] ?>
                 </h1>
             </a>
         </div>
-        =======
         <section class="row my-4 justify-content-center align-items-center">
             <h1 class="text-center text-primary col-12 col-sm-3 m-0 p-0">Vendedor:</h1>
             <a class="col-6 col-md-3 text-decoration-none text-center d-block"
-                href="?page=user&idU=<?= $product['id_user'] ?>">
-                <img class="rounded-circle" style="width: 250px; height: 250px;" src="<?= $product['image_user'] ?>"
-                    alt="<?= $product['name_user']. " Logo"?>">
+                href="?page=user&u=<?= $productList['idUser'] ?>">
+                <img class="rounded-circle" style="width: 250px; height: 250px;" src="<?= $productList['imgUser'] ?>"
+                    alt="<?= $productList['nameUser']. " Logo"?>">
                 <h3>
-                    <?= $product['name_user'] ?>
+                    <?= $productList['nameUser'] ?>
                 </h3>
             </a>
-            >>>>>>> ed165f86e2b52808f3c10362f7793b25f1c8975b
         </section>
         <?php if (isset($_SESSION['user']) and $_SESSION['user']['type'] !== 2) : ?>
         <section class="row my-4">
@@ -88,7 +87,7 @@
                                 </div>
                                 <div class="card-body text-primary">
                                     <p>
-                                        <<= $commenterList[$i]['text'] ?>
+                                        <?= $commenterList[$i]['text'] ?>
                                     </p>
                                 </div>
                             </div>
@@ -106,38 +105,43 @@
         <?php endif; ?>
         <section class="row bg-primary rounded mt-5 px-2">
             <h4 class="text-white">Mais produtos da loja</h4>
-            <<<<<<< HEAD <?php foreach($userProductList as $productList) : ?>
-                <div class="col-6 col-sm-3 mb-4">
-                    <a href="?page=product&p=<?= $productList['id'] ?>" style="text-decoration: none;">
-                        <div class="card w-100 text-center border-0">
-                            <img class="card-img-top" src="<?= $productList["imgPath"] ?>"
-                                style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <?= $productList['name'] ?>
-                                </h4>
-                                <p class="card-text">R$ <?= $productList['price'] ?>
-                                </p>
-                                =======
-                                <?php foreach($productListOfUser as $product) : ?>
-                                <div class="col-6 col-md-4 col-lg-2 mb-4">
-                                    <a href="?page=product&idP=<?= $product['id'] ?>&idU=<?= $product['id_merchant']?>"
-                                        style="text-decoration: none;">
-                                        <div class="card w-100 text-center border-0">
-                                            <img class="card-img-top img1:1" src="<?= $product['image_path'] ?>"
-                                                alt="Card image">
-                                            <div class="card-body px-0">
-                                                <h4 class="card-title">
-                                                    <?= substr($product['name'], 0, 15)."..." ?>
-                                                </h4>
-                                                <p class="card-text">R$ <?= $product['price'] ?>
-                                                </p>
-                                                >>>>>>> ed165f86e2b52808f3c10362f7793b25f1c8975b
-                                            </div>
+            <?php foreach($userProductList as $productList) : ?>
+            <div class="col-6 col-sm-3 mb-4">
+                <a href="?page=product&p=<?= $productList['id'] ?>" style="text-decoration: none;">
+                    <div class="card w-100 text-center border-0">
+                        <img class="card-img-top" src="<?= $productList[" imgPath"] ?>"
+                            style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <?= $productList['name'] ?>
+                            </h4>
+                            <p class="card-text">R$
+                                <?= $productList['price'] ?>
+                            </p>
+                            <?php foreach($productListOfUser as $product) : ?>
+                            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                                <a href="?page=product&idP=<?= $product['id'] ?>&idU=<?= $product['id_merchant']?>"
+                                    style="text-decoration: none;">
+                                    <div class="card w-100 text-center border-0">
+                                        <img class="card-img-top img1:1" src="<?= $product['image_path'] ?>"
+                                            alt="Card image">
+                                        <div class="card-body px-0">
+                                            <h4 class="card-title">
+                                                <?= substr($product['name'], 0, 15)."..." ?>
+                                            </h4>
+                                            <p class="card-text">R$
+                                                <?= $product['price'] ?>
+                                            </p>
                                         </div>
-                                    </a>
-                                </div>
-                                <?php endforeach; ?>
+                                    </div>
+                                </a>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <?php endforeach;?>
         </section>
         <section class="row bg-primary rounded my-5 px-2">
             <h4 class="text-white">Outros Produtos</h4>
@@ -145,13 +149,14 @@
             <div class="col-6 col-sm-3 mb-4">
                 <a href="?page=product&p=<?= $productList['id'] ?>" style="text-decoration: none;">
                     <div class="card w-100 text-center border-0">
-                        <img class="card-img-top" src="<?= $productList["imgPath"] ?>"
+                        <img class="card-img-top" src="<?= $productList[" imgPath"] ?>"
                             style="height: 20vw; max-height: 300px; min-height: 250px;" alt="Card image">
                         <div class="card-body">
                             <h4 class="card-title">
                                 <?= $productList['name'] ?>
                             </h4>
-                            <p class="card-text">R$ <?= $productList['price'] ?>
+                            <p class="card-text">R$
+                                <?= $productList['price'] ?>
                             </p>
                         </div>
                     </div>
