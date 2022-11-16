@@ -24,7 +24,7 @@ class Database
     {
         # Informações sobre o banco de dados:
         $db_host = "localhost";
-        $db_nome = "buyeasy_db";
+        $db_nome = "buyeasy";
         $db_usuario = "root";
         $db_senha = "";
         $db_driver = "mysql";

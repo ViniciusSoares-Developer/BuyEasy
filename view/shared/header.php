@@ -25,7 +25,7 @@
         <?php else : ?>
             <section class="col-sm-3 my-2">
                 <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                    <a href="?page=user&idU=<?= $_SESSION['user']['id'] ?>" class="me-2"><img src="<?= $_SESSION['user']['image_path'] ?>" class="rounded-circle img1:1 border border-primary" alt="" width="40" height="40" /></a>
+                    <a href="?page=user&u=<?= $_SESSION['user']['id'] ?>" class="me-2"><img src="<?= $_SESSION['user']['imgPath'] ?>" class="rounded-circle img1:1 border border-primary" alt="" width="40" height="40" /></a>
                     <div class="dropdown">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fas fa-list"></i>
@@ -69,17 +69,18 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-3 p-2">
-                            <img src="<?= sprintf("%s/%s", constant("URL"), $item['img']) ?>" class="img-fluid rounded-start" alt="...">
+                            <img src="<?= $item['img'] ?>" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-7">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $item['name'] ?></h5>
-                                <p class="card-text">R$: <?= $item['price'] ?></p>
+                                <p class="card-text mb-0">UND. R$: <?= $item['price'] ?></p>
+                                <p class="card-text">TOTAL R$: <?= $item['price'] * $item['quantity'] ?></p>
                             </div>
                         </div>
                         <div class="col-12">
                             <form method="GET">
-                                <input class="form-control" type="number" step="1" min="0" name="quantity" value="<?= $item['quant'] ?>">
+                                <input class="form-control" type="number" step="1" min="0" name="quantity" value="<?= $item['quantity'] ?>">
                                 <button type="submit" name="index" value="<?= $index ?>" class="btn btn-outline-secondary w-100">Atualizar</button>
                             </form>
                         </div>
@@ -95,20 +96,17 @@
         $total = 0;
         if (isset($_SESSION['cart']))
         foreach($_SESSION['cart'] as $index => $item){
-            $total += $item['price'] * $item['quant'];
-            if ($index == count($_SESSION['cart'])-1) {
-                echo $total;
-            }
-        }?></p>
+            $total += $item['price'] * $item['quantity']; 
+        } echo "<span id=\"totalPrice\">$total</span>";?></p>
         <?php if (isset($_SESSION['user'])) : ?>
             <form method="POST">
-                <select class="form-select" name="discount" id="">
+                <select class="form-select" name="discount" id="cupon">
                     <option value="" selected>Selecione um cupom</option>
                     <option value="10" <?php if($total<100)echo "disabled"?>>Desconto de 10% para valores acima de R$100</option>
                     <option value="25" <?php if($total<200)echo "disabled"?>>Desconto de 25% para valores acima de R$200</option>
                     <option value="40" <?php if($total<500)echo "disabled"?>>Desconto de 40% para valores acima de R$500</option>
                 </select>
-                <button type="submit" name="cart" value="confirm" class="btn btn-success w-100" <?php if(empty($_SESSION['cart']))echo"disabled"?>>Finalizar compra</button>
+                <button type="submit" name="submitC" value="finish" class="btn btn-success w-100" <?php if(empty($_SESSION['cart']))echo"disabled"?>>Finalizar compra</button>
             </form>
         <?php else : ?>
             <a href="?page=login&alert=cart">

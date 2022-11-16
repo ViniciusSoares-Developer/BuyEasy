@@ -22,7 +22,7 @@
         <form class="px-5 pt-5" method="post">
             <div class="row">
                 <label class="form-label">Login:</label>
-                <input class="col-12 form-control" type="text" placeholder="Email / Nome de usuario" name="name" value="<?= isset($_COOKIE['buyeasy_user_name']) ? $_COOKIE['buyeasy_user_name'] : "" ?>" />
+                <input class="col-12 form-control" type="email" placeholder="Email / Nome de usuario" name="email" value="<?= isset($_COOKIE['buyeasy_user_name']) ? $_COOKIE['buyeasy_user_name'] : "" ?>" />
             </div>
             <div class="row mt-2">
                 <label class="form-label w-100">Senha:</label>

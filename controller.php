@@ -10,19 +10,10 @@ if ($_COOKIE) {
 $page = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['page'])) ? $_GET['page'] : 'initial';
 $alert = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['alert'])) ? $_GET['alert'] : null;
 
-include_once "./model/connectServer.php";
-
-include_once "./model/cartClass.php";
-include_once "./controller/controllerCart.php";
-
-include_once "./model/userClass.php";
-include_once "./controller/controllerUser.php";
-
-include_once "./model/productClass.php";
-include_once "./controller/controllerProduct.php";
-
-include_once "./model/commenterClass.php";
-include_once "./controller/controllerCommenter.php";
+require_once __DIR__ . "/controller/CAccount.php";
+require_once __DIR__ . "/controller/CUser.php";
+require_once __DIR__ . "/controller/CProduct.php";
+require_once __DIR__ . "/controller/CCart.php";
 
 if (
     $page != 'login'
@@ -30,7 +21,7 @@ if (
     && $page != 'add_product'
     && $page != 'edit_product'
 ) {
-    include_once "./view/shared/header.php";
+    require_once __DIR__ . "/view/shared/header.php";
 }
 
 require_once "./router.php";
@@ -41,5 +32,5 @@ if (
     && $page != 'add_product'
     && $page != 'edit_product'
 ) {
-    include_once "./view/shared/footer.php";
+    require_once __DIR__ . "/view/shared/footer.php";
 }

@@ -26,3 +26,8 @@ document.body.onload = () => {
 		element.style.height = element.offsetWidth + "px";
 	}
 }
+
+document.getElementById("cupon").onchange = () => {
+	var element = document.getElementById("totalPrice");
+	element.textContent -= element.textContent * (document.getElementById("cupon").value/100);
+}

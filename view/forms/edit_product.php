@@ -26,15 +26,15 @@
 			</div>
 			<div class="row mt-2">
 				<label class="form-label">Nome:</label>
-				<input class="col-12 form-control" type="text" name="name" value="<?= $userProduct['name']?>" required />
+				<input class="col-12 form-control" type="text" name="name" value="<?= $productList['name']?>" required />
 			</div>
 			<div class="row mt-2">
 				<label class="form-label">Preço: </label>
-				<input class="col-12 form-control" type="number" name="price" min="0" step="0.01" value="<?= $userProduct['price']?>" required />
+				<input class="col-12 form-control" type="number" name="price" min="0" step="0.01" value="<?= $productList['price']?>" required />
 			</div>
 			<div class="row mt-2">
 				<label class="form-label w-100">Descrição:</label>
-				<textarea class="form-control" name="description" rows="5" style="resize: none;"><?= $userProduct['description']?></textarea>
+				<textarea class="form-control" name="description" rows="5" style="resize: none;"><?= $productList['description']?></textarea>
 			</div>
 			<button class="w-100 mt-2 btn btn-primary" type="submit" name="submitP" value="edit">
 				Editar produto

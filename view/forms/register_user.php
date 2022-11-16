@@ -52,7 +52,7 @@
 			</div>
 			<div class="row col mt-2">
 				<div class="col-12 form-check">
-					<input class="form-check-input" type="checkbox" name="merchant">
+					<input class="form-check-input" type="checkbox" name="type">
 					<label for="merchant" class="form-check-label">Comerciante</label>
 				</div>
 			</div>

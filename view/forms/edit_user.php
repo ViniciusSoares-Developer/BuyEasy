@@ -22,7 +22,7 @@
             </div>
 		<?php endif; ?>
 	</div>
-    <?php if(isset($_SESSION['user']) && $_SESSION['user']['type'] == '2'):?>
+    <?php if(isset($_SESSION['user']) && $_SESSION['user']['type'] == 2):?>
         <form class="row p-3 border border-3 border-primary rounded" method="post" enctype="multipart/form-data">
             <label for="image" class="form-label">Imagem:
             <input class="form-control" type="file" name="image" id="" accept="image/*" required>
