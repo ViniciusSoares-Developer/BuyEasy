@@ -134,7 +134,6 @@
                 </div>
             </div>
         </section>
-<<<<<<< HEAD
         <section class="col-md my-4">
             <div class="col-12 my-2">
                 <div class="card">
@@ -155,7 +154,5 @@
                 </div>
             </div>
         </section>
-=======
->>>>>>> ed165f86e2b52808f3c10362f7793b25f1c8975b
     </section>
 </main>
