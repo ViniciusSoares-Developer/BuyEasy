@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <section class="row pb-4 px-4" style="height: 5rem;">
     <div class="d-flex justify-content-center">
+=======
+<section class="row pb-4 px-4 mt-4" style="height: 5rem;">
+    <form method="POST" class="d-flex justify-content-center">
+>>>>>>> ed165f86e2b52808f3c10362f7793b25f1c8975b
         <div class="col-sm-8">
             <input class="h-100 form-control border-primary" type="text" name="s" placeholder="Buscar">
         </div>
