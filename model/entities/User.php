@@ -65,6 +65,11 @@ class User {
         $this->type = $type;
     }
 
+    static public function accessAdmin()
+    {
+        return isset($_SESSION['user']) && $_SESSION['user']['type'] == 3 ? true : false; 
+    }
+
     static function accessSeller() {
         return isset($_SESSION['user']) && $_SESSION['user']['type'] == 2 ? true : false; 
     }

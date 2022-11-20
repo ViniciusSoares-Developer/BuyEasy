@@ -100,12 +100,16 @@ class AccountService
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function connectAccount()
+    public function connectAccount($remember)
     {
         if ($this->verifyAccountAccess()) {
             @session_start();
             $_SESSION['user'] = $this->getInformationUser()[0];
         }
+        if ($remember) {
+            $data = new DateTime('+1 month', new DateTimeZone('America/Sao_Paulo'));
+            setcookie("buyeasy_login", $this->getAccount()->getEmailLogin(), strtotime($data->format('Y-m-d H:i:s')));
+        } else setcookie("buyeasy_login", "");
     }
 
     //Edit

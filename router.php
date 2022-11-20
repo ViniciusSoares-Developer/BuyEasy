@@ -2,8 +2,9 @@
 
 switch (true) {
     case $page === 'initial':
-        if ((!User::accessLogged() || !User::accessSeller())) include_once __DIR__ . "/view/user/initial_user.php";
-        else include_once __DIR__ . "/view/user/seller/initial_merchant.php";
+        // if (User::accessLogged() && User::accessAdmin())
+        if (User::accessLogged() && User::accessSeller()) include_once __DIR__ . "/view/user/seller/initial_merchant.php";
+        else include_once __DIR__ . "/view/user/initial.php";
         break;
 
     case $page === 'termsOfUser':
@@ -23,24 +24,16 @@ switch (true) {
         include_once "./view/user/search_view.php";
         break;
 
-    case $page === 'login' && !User::accessLogged():
-        include_once "./view/forms/login_user.php";
-        break;
-
-    case $page === 'register' && !User::accessLogged():
-        include_once "./view/forms/register_user.php";
-        break;
-
-    case $page === 'edit_user' && User::accessLogged():
+    case $page === 'editu' && User::accessLogged():
         include_once "./view/forms/edit_user.php";
         break;
 
-    case $page === 'add_product' && User::accessSeller():
+    case $page === 'addp' && User::accessSeller():
         require_once __DIR__ . "/controller/CProduct.php";
         include_once "./view/forms/register_product.php";
         break;
 
-    case $page === 'edit_product' && User::accessSeller() && $idProduct:
+    case $page === 'editp' && User::accessSeller() && $idProduct:
         include_once "./view/forms/edit_product.php";
         break;
 
@@ -48,10 +41,10 @@ switch (true) {
         include_once "./view/user/seller/learningMarketing.php";
         break;
 
-    case $page === 'list_buy' && !User::accessSeller():
+    case $page === 'listbuy' && !User::accessSeller():
         include_once "./view/user/buy_list.php";
         break;
 
     default:
-        include_once "./view/notFound.php";
+        echo "not found";
 }

@@ -15,7 +15,7 @@ if ($fields) {
 }
 
 $passwordVerify = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['password_verify'])) ? $_POST['password_verify'] : null;
-$remember = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['remember'])) ? $_POST['remember'] : null;
+$remember = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['remember'])) ? true : false;
 
 $logout = ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['logout'])) ? $_GET['logout'] : false;
 
@@ -44,7 +44,7 @@ if ($submit) {
 
 switch ($submit) {
     case 'login':
-        $service->connectAccount();
+        $service->connectAccount($remember);
         header("Location: ?page=initial");
         break;
     case 'register':

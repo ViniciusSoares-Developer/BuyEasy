@@ -1,4 +1,4 @@
-<main class="position-relative d-flex align-items-center main-form">
+<main class="position-relative d-flex align-items-center">
 	<div class="position-absolute top-0 w-100 d-flex justify-content-center">
 		<?php if ($alert === 'error') : ?>
 			<div class="alert alert-danger alert-dismissible">
@@ -17,9 +17,8 @@
             </div>
 		<?php endif; ?>
 	</div>
-	<div class="container form-max rounded-4 p-4" style="background-color: white; max-width: 600px;">
-		<a class="position-absolute" href="?page=initial"><button class="btn btn-primary" type="button"><i class="fas fa-angle-left"></i></button></a>
-		<form class="px-5 pt-5" method="POST" enctype="multipart/form-data">
+	<div class="container px-5 py-2" style="max-width: 600px;">
+		<form class="p-5 rounded bg-white" method="POST" enctype="multipart/form-data">
 			<div class="row">
 				<label class="form-label">Image do produto:</label>
 				<input class="col-12 form-control" type="file" name="image" accept="image/jpeg, image/png" required />
@@ -36,7 +35,7 @@
 				<label class="form-label w-100">Descrição:</label>
 				<textarea class="form-control" name="description" rows="5" style="resize: none;"><?= $productList['description']?></textarea>
 			</div>
-			<button class="w-100 mt-2 btn btn-primary" type="submit" name="submitP" value="edit">
+			<button class="w-100 mt-2 btn btn-blue" type="submit" name="submitP" value="edit">
 				Editar produto
 			</button>
 		</form>

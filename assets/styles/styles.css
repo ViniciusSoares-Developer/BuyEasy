@@ -1,16 +1,62 @@
+:root {
+    --blue: #04b3c8;
+    --black: #323232;
+    --gray: #e8e8e8;
+    --white: #fff;
+}
+
 body {
-    background-color: #EFEFEF;
+    background-color: var(--gray);
 }
 
 main {
     min-height: 70vh;
 }
 
-.main-form {
-    width: 100vw;
-    min-height: 100vh;
-    background-color: blue;
-    background-image: url("../images/Frame\ 1.png")!important;
+.bg-blue {
+    background-color: var(--blue)!important;
+}
+.bg-black {
+    background-color: var(--black)!important;
+}
+.bg-gray {
+    background-color: var(--gray)!important;
+}
+.bg-white{
+    background-color: var(--white)!important;
+}
+
+.btn-blue {
+    background-color: var(--blue);
+    border: 1px solid var(--blue);
+    color: var(--white);
+    box-sizing: border-box;
+}
+.btn-blue:hover, .btn-blue:focus {
+    background-color: var(--white);
+    color: var(--blue);
+}
+
+.btn-white {
+    background-color: var(--white);
+    border: 1px solid var(--white);
+    color: var(--black);
+    box-sizing: border-box;
+}
+.btn-white:hover, .btn-white:focus {
+    background-color: transparent;
+    color: var(--white);
+}
+
+.border-blue {
+    border-color: var(--blue);
+}
+
+.text-blue {
+    color: var(--blue);
+}
+.text-black {
+    color: var(--black)!important;
 }
 
 .logo {

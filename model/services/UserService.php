@@ -18,9 +18,17 @@ class UserService
         $this->user = $user;
     }
 
+    static function update()
+    {
+        $id = $_SESSION['user']['id'];
+        $sql = "SELECT * FROM `users` WHERE `id` = $id;";
+        $db = Database::connection();
+        $_SESSION['user'] = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+
     function getLast6UsersRegister()
     {
-        $sql = "SELECT * FROM `users` ORDER BY `id` DESC LIMIT 6;";
+        $sql = "SELECT * FROM `users` WHERE `type` = 2 ORDER BY `id` DESC LIMIT 6;";
         $db = Database::connection();
         return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -41,12 +49,14 @@ class UserService
                 return false;
             $path = $folder . $nameArchive . "." . $extension;
             if (move_uploaded_file($img['tmp_name'], $path)) {
-                $sql = "UPDATE `users` SET `img_path` = ':img_path' WHERE `id` = :id;";
+                $sql = "UPDATE `users` SET `imgPath` = :img WHERE `id` = :id;";
                 $db = Database::connection();
                 $stmt = $db->prepare($sql);
                 $stmt->bindValue(':img', $path);
                 $stmt->bindValue(':id', $_SESSION['user']['id']);
-                return $stmt->execute();
+                $status = $stmt->execute();
+                self::update();
+                return $status;
             }
         }
     }
@@ -75,6 +85,7 @@ class UserService
             $stmt->bindValue(':whatsapp', $user->getWhatsapp());
             $stmt->bindValue(':instagram', $user->getInstagram());
             $stmt->execute();
+            self::update();
         }
     }
 }

@@ -8,7 +8,7 @@ $submit = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['submitC'])) ? 
 $index = ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['index'])) ? $_GET['index'] : null;
 $quantity = ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['quantity'])) ? $_GET['quantity'] : null;
 
-$pattern = '/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>\?\\\]/';
+$pattern = '/[\'\~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>\?\\\]/';
 if ($submit) {
     foreach($item as $fields){
         if (preg_match($pattern, $fields)) {
@@ -19,6 +19,10 @@ if ($submit) {
 
 $cart = new Cart($discount);
 $cartService = new CartService($cart);
+
+// var_dump($item);
+// var_dump($_SESSION['cart']);
+// var_dump($submit);
 
 switch ($submit) {
     case 'add':

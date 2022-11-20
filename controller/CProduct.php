@@ -50,7 +50,12 @@ switch ($submit) {
             $userProductList = $productService->getUserProducts($productList["idUser"]);
             $userNotProductList = $productService->getUserNotProducts($productList["idUser"]);
         } elseif ($search && $page == "search") {
-            $productList = $productService->search($search);
+            if (User::accessSeller()) {
+                $productList = $productService->search($search);
+            }
+            else {
+                $productList = $productService->search($search);
+            }
         } elseif ($idUser) {
             $productList = $productService->getUserProducts($idUser);
         } else {

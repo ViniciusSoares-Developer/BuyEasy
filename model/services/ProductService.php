@@ -52,7 +52,13 @@ class ProductService {
 
     function search($arg)
     {
-        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$arg%' AND `id`";
+        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$arg%'";
+        $db = Database::connection();
+        return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+    function searchProductUser($arg)
+    {
+        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$arg%' AND `id` = $_SESSION[user][id]";
         $db = Database::connection();
         return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }

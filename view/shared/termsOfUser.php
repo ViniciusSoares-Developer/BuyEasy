@@ -1,5 +1,5 @@
 <main>
-    <p class="px-5" style="text-align: justify;">
+    <p class="mx-5 p-3 rounded bg-white" style="text-align: justify;">
         Seja bem-vindo ao nosso site. Leia com atenção todos os termos abaixo:
         Este documento, e todo o conteúdo do site é oferecido por (ADICIONAR DADOS DA EMPRESA OU NOME FANTASIA), neste termo representado apenas por “EMPRESA”, que regulamenta todos os direitos e obrigações com todos que acessam o site, denominado neste termo como “VISITANTE”, reguardado todos os direitos previstos na legislação, trazem as cláusulas abaixo como requisito para acesso e visita do mesmo, situado no endereço (ADICIONAR ENDEREÇO DO SITE).
         A permanência no website implica-se automaticamente na leitura e aceitação tácita do presente termos de uso a seguir. Este termo foi atualizado pela última vez em 14 de setembro de 2021.

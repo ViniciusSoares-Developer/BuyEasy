@@ -7,9 +7,8 @@
             </div>
 		<?php endif; ?>
 	</div>
-	<div class="container form-max rounded-4 p-4" style="background-color: white; max-width: 600px;">
-		<a class="position-absolute" href="?page=initial"><button class="btn btn-primary" type="button"><i class="fas fa-angle-left"></i></button></a>
-		<form class="px-5 pt-5" method="POST" enctype="multipart/form-data">
+	<div class="container rounded-4 p-4" style="background-color: white; max-width: 600px;">
+		<form class="p-4" method="POST" enctype="multipart/form-data">
 			<div class="row">
 				<label class="form-label">Image do produto: <strong>Max: 250kb</strong></label>
 				<input class="col-12 form-control" type="file" name="image" accept="image/*,.jpg,.png,.jpge" required />
@@ -26,7 +25,7 @@
 				<label class="form-label w-100">Descrição:</label>
 				<textarea class="form-control" name="description" rows="5" style="resize: none;"></textarea>
 			</div>
-			<button class="w-100 mt-2 btn btn-primary" type="submit" name="submitP" value="register">
+			<button class="w-100 mt-2 btn btn-blue" type="submit" name="submitP" value="add">
 				Registrar produto
 			</button>
 		</form>
