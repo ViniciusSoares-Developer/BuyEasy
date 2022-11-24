@@ -1,7 +1,7 @@
 <main class="container mt-4">
     <section class="row text-black">
         <div class="col-12 col-lg-5">
-            <img class="w-100 img1:1 rounded" src="https://via.placeholder.com/100x100" alt="">
+            <img class="w-100 img1:1 rounded border border-2 border-secondary" src="<?=$productList['imgPath']?>" alt="">
         </div>
         <div class="col-12 col-lg-7 text-center px-5">
             <h1><?=$productList['name']?></h1>
@@ -36,10 +36,10 @@
     <?php if (isset($_SESSION['user']) and $_SESSION['user']['type'] !== 2) : ?>
         <section class="row my-4">
             <form method="POST">
-                <input class="form-range w-auto" type="range" name="star_quantity" min="0" max="5" value="0">
-                <label class="fs-3" for="star_quantity"><i class="fas fa-star text-blue"></i></label>
+                <input class="form-range w-auto" id="star" type="range" name="star_quantity" min="0" max="5" value="0">
+                <label class="fs-3" for="star_quantity"><i id="label-star" class="fas fa-star text-blue">0</i></label>
                 <textarea class="col-12 rounded border " name="commenter" cols="30" rows="5" maxlength="255" placeholder="Max: 255"></textarea>
-                <button type="submit" name="commenter-action" value="commenter" class="col-12 btn btn-blue">Comentar</button>
+                <button type="submit" name="submitCo" value="commenter" class="col-12 btn btn-blue">Comentar</button>
             </form>
         </section>
     <?php endif; ?>

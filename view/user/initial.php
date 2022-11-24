@@ -13,8 +13,7 @@
             <!-- The slideshow/carousel -->
             <div class="carousel-inner rounded">
                 <div class="carousel-item active">
-                    <img src="assets/src/banner00.png" class="d-block w-100"
-                        style="height: auto; min-height: 150px;" />
+                    <img src="assets/src/banner00.png" class="d-block w-100" style="height: auto; min-height: 150px;" />
                 </div>
                 <div class="carousel-item">
                     <img src="assets/src/banner.png" autoplay class="d-block w-100"
@@ -73,7 +72,7 @@
                             <img class="card-img-top img1:1" src="<?= $fields['imgPath'] ?>" alt="Card image">
                             <div class="card-body px-0">
                                 <h2 class="card-title w-100">
-                                    <?= $fields['name'] ?>
+                                    <?= strlen($fields["name"])>15?substr($fields["name"], 0, 10)."...":$fields["name"] ?>
                                 </h2>
                             </div>
                             <div class="card-footer">

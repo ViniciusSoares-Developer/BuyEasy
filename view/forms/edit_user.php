@@ -29,7 +29,7 @@
         </label>
         <div class="d-flex justify-content-center flex-wrap">
             <button class="col-12 col-md-2 m-2 btn btn-secondary" type="reset">Limpar</button>
-            <button class="col-12 col-md-2 m-2 btn btn-blue" type="submit" name="submitU" value="editImage">Confirmar</button>
+            <button class="col-12 col-md-2 m-2 btn btn-blue" type="submit" name="submitU" value="alterImage">Confirmar</button>
         </div>
     </form>
     <hr class="border border-2 rounded ">
@@ -42,7 +42,11 @@
         <?php if(isset($_SESSION['user']) && $_SESSION['user']['type'] == '2'):?>
         <label for="" class="form-label">
             Telefone:
-            <input class="form-control" type="tel" autocomplete="off" name="phone" id="" pattern="[0-9]{2}[9]{1}[0-9]{4}[0-9]{4}" placeholder="11912345678" value="<?= $_SESSION['user']['numberContact'] ?>">
+            <input class="form-control" type="tel" autocomplete="off" name="number" id="" pattern="[0-9]{2}[9]{1}[0-9]{4}[0-9]{4}" placeholder="11912345678" value="<?= $_SESSION['user']['numberContact'] ?>">
+        </label>
+        <label for="" class="form-label">
+            Email:
+            <input class="form-control" type="email" autocomplete="off" name="email" id="" value="<?= $_SESSION['user']['emailContact'] ?>">
         </label>
         <label for="" class="form-label">
             Whatsapp:
@@ -55,7 +59,7 @@
         <?php endif;?>
         <div class="d-flex justify-content-center flex-wrap">
             <button class="col-12 col-md-2 m-2 btn btn-secondary" type="reset">Resetar</button>
-            <button class="col-12 col-md-2 m-2 btn btn-blue" type="submit" name="submitU" value="editInformation">Confirmar</button>
+            <button class="col-12 col-md-2 m-2 btn btn-blue" type="submit" name="submitU" value="alterInformation">Confirmar</button>
         </div>
     </form>
     <hr class="border border-2 rounded ">

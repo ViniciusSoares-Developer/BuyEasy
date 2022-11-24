@@ -63,29 +63,39 @@ class UserService
 
     function alterInformations()
     {
-        $sql[] = [];
         $db = Database::connection();
         $user = $this->getUser();
-        if ($user->getName())
-            array_push($sql, "UPDATE `users` SET `name` = ':name' WHERE `id` = :id");
-        if ($user->getNumberContact())
-            array_push($sql, "UPDATE `users` SET `numberContact` = ':number' WHERE `id` = :id");
-        if ($user->getEmailContact())
-            array_push($sql, "UPDATE `users` SET `emailContact` = ':email' WHERE `id` = :id");
-        if ($user->getWhatsapp())
-            array_push($sql, "UPDATE `users` SET `whatsapp` = ':whatsapp' WHERE `id` = :id");
-        if ($user->getInstagram())
-            array_push($sql, "UPDATE `users` SET `instagram` = ':instagram' WHERE `id` = :id");
-
-        foreach ($sql as $key => $value) {
-            $stmt = $db->prepare($value);
+        if ($user->getName()) {
+            $stmt = $db->prepare("UPDATE `users` SET `name` = :name WHERE `id` = :id;");
             $stmt->bindValue(':name', $user->getName());
-            $stmt->bindValue(':number', $user->getNumberContact());
-            $stmt->bindValue(':email', $user->getEmailContact());
-            $stmt->bindValue(':whatsapp', $user->getWhatsapp());
-            $stmt->bindValue(':instagram', $user->getInstagram());
+            $stmt->bindValue(':id', $_SESSION['user']['id']);
             $stmt->execute();
-            self::update();
         }
+        if ($user->getNumberContact()) {
+            $stmt = $db->prepare("UPDATE `users` SET `numberContact` = :numberContact WHERE `id` = :id;");
+            $stmt->bindValue(':numberContact', $user->getNumberContact());
+            $stmt->bindValue(':id', $_SESSION['user']['id']);
+            $stmt->execute();
+        }
+        if ($user->getEmailContact()) {
+            $stmt = $db->prepare("UPDATE `users` SET `emailContact` = :emailContact WHERE `id` = :id;");
+            $stmt->bindValue(':emailContact', $user->getEmailContact());
+            $stmt->bindValue(':id', $_SESSION['user']['id']);
+            $stmt->execute();
+        }
+        if ($user->getWhatsapp()) {
+            $stmt = $db->prepare("UPDATE `users` SET `whatsapp` = :whatsapp WHERE `id` = :id;");
+            $stmt->bindValue(':whatsapp', $user->getWhatsapp());
+            $stmt->bindValue(':id', $_SESSION['user']['id']);
+            $stmt->execute();
+        }
+        if ($user->getInstagram()) {
+            $stmt = $db->prepare("UPDATE `users` SET `instagram` = :instagram WHERE `id` = :id;");
+            $stmt->bindValue(':instagram', $user->getInstagram());
+            $stmt->bindValue(':id', $_SESSION['user']['id']);
+            $stmt->execute();
+        }
+
+        self::update();
     }
 }

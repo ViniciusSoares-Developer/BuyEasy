@@ -36,11 +36,11 @@ $userService = new UserService($user);
 switch ($submit) {
     case 'alterImage':
         if($userService->alterImage($image)) header("Location: ?page=initial");
-        else header("Location: ?page=initial&alert=error");
+        else header("Location: ?page=editu&alert=erroredu");
         break;
     case 'alterInformation':
-        if($userService->alterInformations()) header("Location: ?page=initial");
-        else header("Location: ?page=initial&alert=error");
+        $userService->alterInformations();
+        header("Location: ?page=initial");
         break;
     default:
         if ($idUser) {

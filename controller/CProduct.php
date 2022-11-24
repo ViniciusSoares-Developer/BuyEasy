@@ -33,16 +33,13 @@ $productService = new ProductService($product);
 
 switch ($submit) {
     case 'register':
-        if ($productService->register()) {
-            header("Location: ?page=initial");
-        } else {
-            header("Location: ?page=initial&alert=error");
-        }
+        if ($productService->register()) header("Location: ?page=initial");
+        else header("Location: ?page=initial&alert=addP");
         break;
     case 'edit':
         if ($productService->edit($idProduct))
             header("Location: ?page=initial");
-        header("Location: ?page=&alert=");
+        else header("Location: ?page=editp&alert=editP");
         break;
     default:
         if ($idProduct) {

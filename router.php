@@ -12,7 +12,7 @@ switch (true) {
         break;
 
     case $page === 'product' && $idProduct:
-        require_once __DIR__ . "/controller/CCommenter.php";
+
         include_once "./view/user/product_view.php";
         break;
 

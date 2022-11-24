@@ -27,13 +27,13 @@ if ($logout) {
 $pattern = '/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/';
 if ($submit) {
     if (isset($fields['name']) && preg_match($pattern, $fields['name'])) {
-        header("Location: ?page=login&error=text");
+        header("Location: ?page=initial&alert=textForm");
     }
     if (isset($fields['email']) && preg_match('/[\'\/~`\!#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\?\\\]/', $fields['email'])) {
-        header("Location: ?page=login&error=text");
+        header("Location: ?page=initial&alert=textForm");
     }
     if (isset($fields['password']) && preg_match($pattern, $fields['password'])) {
-        header("Location: ?page=login&error=text");
+        header("Location: ?page=initial&alert=textForm");
     }
 }
 
@@ -44,31 +44,31 @@ if ($submit) {
 
 switch ($submit) {
     case 'login':
-        $service->connectAccount($remember);
-        header("Location: ?page=initial");
+        if ($service->connectAccount($remember)) header("Location: ?page=initial");
+        else header("Location: ?page=initial&alert=errorL");
         break;
     case 'register':
         if ($fields['email'] !== $fields['confirm_email'] || $fields['password'] !== $fields['confirm_password']) {
-            header("Location: ?page=register&error=confirm");
+            header("Location: ?page=initial&alert=confirm");
             break;
         }
-        $service->register();
-        header("Location: ?page=initial");
+        if ($service->register()) header("Location: ?page=initial");
+        else header("Location: ?page=initial&alert=errorR");
         break;
     case 'editEmail':
         if ($fields['email'] !== $fields['confirm_email']) {
-            header("Location: ?page=edit_user&error=confirm");
+            header("Location: ?page=edit_user&alert=confirm");
             break;
         }
-        if(!$service->editEmail()) header("Location: ?page=edit_user&error=password");
-        header("Location: ?page=initial");
+        if(!$service->editEmail()) header("Location: ?page=editu&alert=password");
+        else header("Location: ?page=initial");
         break;
     case 'editPassword':
         if ($fields['email'] !== $fields['confirm_email']) {
-            header("Location: ?page=edit_user&error=confirm");
+            header("Location: ?page=edit_user&alert=confirm");
             break;
         }
-        if ($service->editPassword()) header("Location: ?page=edit_user&error=password");
-        header("Location: ?page=initial");
+        if ($service->editPassword()) header("Location: ?page=editu&alert=password");
+        else header("Location: ?page=initial");
         break;
 }

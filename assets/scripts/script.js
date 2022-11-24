@@ -31,3 +31,7 @@ document.getElementById("cupon").onchange = () => {
 	var element = document.getElementById("totalPrice");
 	element.textContent -= element.textContent * (document.getElementById("cupon").value/100);
 }
+document.getElementById("star").onchange = () => {
+	var element = document.getElementById("label-star");
+	element.textContent = document.getElementById("star").value;
+}

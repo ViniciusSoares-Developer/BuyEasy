@@ -8,10 +8,10 @@ $starQ = ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['star_quantity']
 $pattern = '/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/';
 if ($submit) {
     if (isset($text) && preg_match($pattern, $text)) {
-        header("Location: ?page=initial&error=text");
+        header("Location: ?page=initial&alert=textForm");
     }
-    if (is_int($starQ)) {
-        header("Location: ?page=initial&error=text");
+    if (!is_int($starQ)) {
+        header("Location: ?page=initial&alert=typeInvalid");
     }
 }
 
@@ -21,7 +21,7 @@ $commeterService = new CommenterService($commeter);
 switch ($submit) {
     case 'commenter':
         $commeterService->commenter();
-        header('Location: ?page=initial');
+        header("Location: ?page=initial");
         break;
     default:
         if ($idProduct) {
