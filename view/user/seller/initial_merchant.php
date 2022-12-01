@@ -12,7 +12,7 @@
     <?php endif; ?>
     <section class="row justify-content-center text-primary mb-5">
         <div class="col-12 col-lg-4 px-5 mb-3">
-            <a href="?page=add_product">
+            <a href="?page=addp">
                 <button class="w-100 h-100 btn btn-blue fs-1">
                     Adicione agora
                 </button>
