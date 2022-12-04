@@ -45,7 +45,7 @@ class ProductService {
     function getUserNotProducts(int $value)
     {
         $sql = "SELECT p.*, u.`name` nameUser, u.`imgPath` imgUser FROM `products` p INNER JOIN `users` u
-        ON p.`idUser` = p.`id` WHERE p.`idUser` <> $value ORDER BY p.`id` DESC;";
+        ON p.`idUser` = u.`id` WHERE p.`idUser` <> $value ORDER BY p.`id` DESC;";
         $db = Database::connection();
         return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }

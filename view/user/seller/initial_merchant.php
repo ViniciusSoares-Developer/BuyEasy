@@ -1,15 +1,4 @@
 <main class="container-fluid">
-    <?php if ($alert === 'errRemove'): ?>
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Error!</strong> Erro ao remover
-    </div>
-    <?php elseif ($alert === 'successRemove'): ?>
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Sucesso!</strong> Item removido com sucesso
-    </div>
-    <?php endif; ?>
     <section class="row justify-content-center text-primary mb-5">
         <div class="col-12 col-lg-4 px-5 mb-3">
             <a href="?page=addp">

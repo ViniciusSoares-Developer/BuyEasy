@@ -25,7 +25,7 @@
 				<label class="form-label w-100">Descrição:</label>
 				<textarea class="form-control" name="description" rows="5" style="resize: none;"></textarea>
 			</div>
-			<button class="w-100 mt-2 btn btn-blue" type="submit" name="submitP" value="add">
+			<button class="w-100 mt-2 btn btn-blue" type="submit" name="submitP" value="register">
 				Registrar produto
 			</button>
 		</form>

@@ -397,9 +397,7 @@
             (empty($_SESSION['cart'])) echo "disabled" ?>>Finalizar compra</button>
         </form>
         <?php else: ?>
-        <a href="?page=login&alert=cart">
-            <button class="btn btn-blue rounded-0 w-100">Finalizar compra</button>
-        </a>
+            <button class="btn btn-blue rounded-0 w-100" type="button" disabled>Realize login para finalizar a compra</button>
         <?php endif; ?>
     </div>
 </div>

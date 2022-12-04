@@ -4,11 +4,11 @@
             <img class="w-100 img1:1 rounded border border-2 border-secondary" src="<?=$productList['imgPath']?>" alt="">
         </div>
         <div class="col-12 col-lg-7 text-center px-5">
-            <h1><?=$productList['name']?></h1>
-            <p class="text-start px-5 overflow-auto" style="min-height: 19.9vw;max-height: 20vw;">
+            <h1 class="bg-white rounded"><?=$productList['name']?></h1>
+            <p class="text-start px-5 py-2 overflow-auto bg-white rounded" style="min-height: 19.9vw;max-height: 20vw;">
                 <?=$productList['description']?>
             </p>
-            <h4>R$ <?=str_replace(".",",",$productList['price'])?></h4>
+            <h4 class="bg-white rounded">R$ <?=str_replace(".",",",$productList['price'])?></h4>
             <section class="row my-3 justify-content-center">
                 <div class="col-md-6">
                     <form method="POST">
@@ -28,7 +28,7 @@
     </section>
     <section class="row my-4 justify-content-center align-items-center">
         <h1 class="text-center text-blue col-12 col-sm-3 m-0 p-0">Vendedor:</h1>
-        <a class="col-6 col-md-3 text-decoration-none text-center d-block" href="?page=user&u">
+        <a class="col-6 col-md-3 text-decoration-none text-center d-block" href="?page=user&u=<?=$productList['idUser']?>">
             <img class="rounded-circle w-100 img1:1" src="<?=$productList['imgUser']?>" alt="Logo">
             <h3 class="text-blue"><?=$productList['nameUser']?></h3>
         </a>
